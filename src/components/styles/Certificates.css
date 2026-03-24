@@ -1,0 +1,129 @@
+.certificates-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-items: center;
+  justify-content: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  margin: auto;
+  margin-bottom: 250px;
+  padding: 120px 0px;
+}
+
+.certificates-section h2 {
+  font-size: 70px;
+  line-height: 70px;
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-top: 50px;
+  margin-bottom: 90px;
+}
+
+.certificates-section h2 > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+}
+
+.certificates-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.certificate-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(127, 64, 255, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(127, 64, 255, 0.2);
+}
+
+.certificate-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.certificate-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.certificate-card:hover .certificate-image img {
+  transform: scale(1.05);
+}
+
+.certificate-info {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.certificate-info h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+}
+
+.certificate-info h4 {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  color: #7f40ff;
+  letter-spacing: 0.5px;
+}
+
+.certificate-info p {
+  font-size: 13px;
+  font-weight: 300;
+  margin: 8px 0 0 0;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certificates-section h2 {
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 60px;
+  }
+
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .certificate-image {
+    height: 200px;
+  }
+}

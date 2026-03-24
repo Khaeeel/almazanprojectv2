@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
 import { config } from "../config";
 import "./MyWorks.css";
 
@@ -23,8 +24,23 @@ const MyWorks = () => {
               <img src={project.image} alt={project.title} />
             </div>
             <div className="myworks-card-info">
-              <h3>{project.title}</h3>
-              <p className="myworks-card-category">{project.category}</p>
+              <div className="myworks-card-header">
+                <div>
+                  <h3>{project.title}</h3>
+                  <p className="myworks-card-category">{project.category}</p>
+                </div>
+                {project.github && project.github !== '#' && (
+                  <a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="myworks-github-link"
+                    title="View on GitHub"
+                  >
+                    <FaGithub />
+                  </a>
+                )}
+              </div>
               <p className="myworks-card-description">{project.description}</p>
               <p className="myworks-card-tech">{project.technologies}</p>
             </div>

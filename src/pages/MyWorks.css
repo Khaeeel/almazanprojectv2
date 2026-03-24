@@ -100,11 +100,44 @@
   padding: 25px;
 }
 
+.myworks-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.myworks-card-header > div {
+  flex: 1;
+}
+
 .myworks-card-info h3 {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 8px;
   color: #fff;
+}
+
+.myworks-github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(194, 164, 255, 0.1);
+  border: 1px solid rgba(194, 164, 255, 0.3);
+  color: var(--accentColor);
+  transition: all 0.3s ease;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.myworks-github-link:hover {
+  background: rgba(194, 164, 255, 0.2);
+  border-color: var(--accentColor);
+  transform: scale(1.1);
 }
 
 .myworks-card-category {

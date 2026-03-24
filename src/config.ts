@@ -1,191 +1,203 @@
 export const config = {
     developer: {
-        name: "Redoyanul",
-        fullName: "Redoyanul Haque",
-        title: "AI & Full-Stack Developer",
-        description: "AI & Full-Stack Developer building intelligent systems and modern web applications. Passionate about machine learning, deep learning, and creating next-gen autonomous agents."
+        name: "Dominic Boy",
+        fullName: "Dominic Boy Almazan",
+        title: "AI/Machine Learning Engineer",
+        description: "Aspiring AI and Machine Learning engineer passionate about building intelligent, data-driven systems that transform complex problems into practical solutions through thoughtful design and robust engineering."
     },
     social: {
-        github: "red1-for-hek",
-        email: "redoyanul1234@gmail.com",
-        location: "Bangladesh"
+        github: "Khaeeel",
+        email: "dmncalmzn@gmail.com",
+        location: "Philippines"
     },
     about: {
         title: "About Me",
-        description: "I am a self-taught AI & Full-Stack Developer from Bangladesh. I build intelligent systems, chatbots, and modern web applications. My expertise includes Machine Learning, Deep Learning, NLP, and Full-Stack Web Development with React, Node.js, and Python. Currently building next-gen AI Agents and JARVIS-like Personal Assistants. I have a competitive programming mindset and a deep passion for automation. Code is poetry, AI is the canvas."
+        description: "I am a graduating IT student with a strong focus on Artificial Intelligence and Machine Learning. Throughout my academic journey, I have developed and experimented with predictive models, natural language processing applications such as sentiment analysis, summarization, and named entity recognition, and AI-powered automation systems integrating OCR and Large Language Models. I enjoy building intelligent systems that solve real-world problems from classification models to end-to-end AI pipelines that transform raw data into meaningful insights. My experience combines machine learning experimentation, backend development using Laravel, and database structuring for analytics-driven applications. As I prepare to enter the industry, I am eager to contribute to innovative AI-driven projects, continuously improve my technical skills, and grow as a machine learning engineer who builds practical and impactful solutions."
     },
     experiences: [
         {
-            position: "Learning Something New",
-            company: "Self-Development",
-            period: "2025 - Present",
-            location: "Bangladesh",
-            description: "Continuously exploring emerging technologies, researching advanced AI systems, and pushing the boundaries of what's possible in tech.",
+            position: "AI Intern",
+            company: "Cornersteel Systems Corporation",
+            period: "2024 - Present",
+            location: "Philippines",
+            description: "Developing AI-powered automation systems using advanced NLP and OCR technologies. Working on Synopsis project - an intelligent chatbot system that captures, analyzes, and summarizes conversations using multi-engine OCR, LLMs, and RAG systems for knowledge management.",
             responsibilities: [
-                "Researching cutting-edge AI and ML technologies",
-                "Experimenting with new frameworks and tools",
-                "Contributing to open-source projects",
-                "Building innovative personal projects"
+                "Building OCR and LLM-based automation with EasyOCR and PaddleOCR",
+                "Implementing RAG systems with ChromaDB for intelligent knowledge management",
+                "Developing conversation analysis and summarization pipelines",
+                "Creating REST APIs with Python Flask for backend services",
+                "Integrating NLP models for text extraction and processing"
             ],
-            technologies: ["Research", "Innovation", "Open Source", "New Tech"]
-        },
-        {
-            position: "AI Engineer",
-            company: "Freelance & Projects",
-            period: "2025",
-            location: "Bangladesh",
-            description: "Developing intelligent AI systems, chatbots, and machine learning solutions. Building next-gen conversational AI agents and JARVIS-like personal assistants.",
-            responsibilities: [
-                "Building AI-powered chatbots and conversational agents",
-                "Developing machine learning models with TensorFlow and PyTorch",
-                "Working with LLMs and transformer architectures",
-                "Creating autonomous AI systems and automation tools"
-            ],
-            technologies: ["Python", "TensorFlow", "PyTorch", "LLMs", "NLP", "AI Agents"]
+            technologies: ["Python", "OCR", "LLM", "RAG", "ChromaDB", "Flask", "NLP", "Docker"]
         },
         {
             position: "Full-Stack Developer",
-            company: "Freelance & Projects",
+            company: "Barangay Health Project",
             period: "2024",
-            location: "Bangladesh",
-            description: "Built complete web applications from frontend to backend. Developed responsive UIs, RESTful APIs, and database solutions for various clients and projects.",
+            location: "Philippines",
+            description: "Developed a comprehensive health management system with integrated machine learning for disease outbreak prediction at Barangay Daang Bakal Health Center.",
             responsibilities: [
-                "Developing full-stack web applications using React and Node.js",
-                "Building RESTful APIs and integrating databases",
-                "Creating responsive and interactive user interfaces",
-                "Deploying and maintaining web applications"
+                "Built full-stack Laravel PHP application with database optimization",
+                "Implemented Random Forest, XGBoost, and Decision Tree ML algorithms",
+                "Created patient records management and analytics dashboards",
+                "Designed predictive visualization for health trends and case forecasting",
+                "Integrated data analytics and reporting systems"
             ],
-            technologies: ["React", "Node.js", "MongoDB", "Express", "Next.js", "TypeScript"]
+            technologies: ["Laravel", "PHP", "MySQL", "Random Forest", "XGBoost", "Data Analytics"]
         },
         {
-            position: "Python Developer",
-            company: "Self-Taught & Projects",
-            period: "2023",
-            location: "Bangladesh",
-            description: "Dove deep into Python programming, building automation scripts, bots, and mastering the fundamentals of software development and problem-solving.",
+            position: "NLP & AI Researcher",
+            company: "University Research Projects",
+            period: "2023 - 2024",
+            location: "Philippines",
+            description: "Conducted research and development in Natural Language Processing, including sentiment analysis, named entity recognition, and fine-tuned transformer models.",
             responsibilities: [
-                "Learning Python programming and core concepts",
-                "Building automation scripts and Discord bots",
-                "Exploring data structures and algorithms",
-                "Participating in competitive programming"
+                "Fine-tuning MentalBERT with optimized hyperparameters (Grid & Random Search)",
+                "Implementing sentiment classification for mental health text analysis",
+                "Developing Named Entity Recognition models using spaCy",
+                "Building BERT-based question answering systems",
+                "Conducting comprehensive model evaluation and comparison studies"
             ],
-            technologies: ["Python", "Automation", "Scripting", "Discord.py", "Problem Solving"]
+            technologies: ["BERT", "Transformers", "PyTorch", "spaCy", "NLP", "Scikit-learn"]
         },
         {
             position: "Graphic Designer",
-            company: "Freelance",
-            period: "2022",
-            location: "Bangladesh",
-            description: "Started my creative journey as a graphic designer, creating logos, banners, and visual content. This sparked my passion for technology and digital creation.",
+            company: "Freelance & University Events",
+            period: "2022 - 2024",
+            location: "Philippines",
+            description: "Created professional graphic designs for marketing materials, social media, branding, and institutional events.",
             responsibilities: [
-                "Designing logos and brand identity materials",
-                "Creating social media graphics and banners",
-                "Working with clients on creative projects",
-                "Learning design principles and visual aesthetics"
+                "Designing logos and brand identity systems",
+                "Creating social media graphics and promotional materials",
+                "Designing event posters and announcements",
+                "Developing digital marketing content",
+                "Art direction and visual composition"
             ],
-            technologies: ["Photoshop", "Illustrator", "Canva", "Figma", "Visual Design"]
+            technologies: ["Adobe Photoshop", "Adobe Illustrator", "Figma", "Canva"]
         },
-        {
-            position: "Microsoft Office",
-            company: "Begin Learning",
-            period: "2021",
-            location: "Bangladesh",
-            description: "Started my journey into the digital world by learning Microsoft Office tools. This foundational step introduced me to computers and sparked my curiosity for technology.",
-            responsibilities: [
-                "Learning Microsoft Word, Excel, and PowerPoint",
-                "Creating documents and presentations",
-                "Understanding basic computer operations",
-                "Building foundational digital skills"
-            ],
-            technologies: ["MS Word", "MS Excel", "MS PowerPoint", "Computer Basics"]
-        }
+
     ],
     projects: [
         {
             id: 1,
-            title: "Drishti",
-            category: "AI / LLM",
-            technologies: "Python, PyTorch, Transformers, FastAPI, React, MongoDB",
-            image: "/images/drishti.png",
-            description: "Bangladesh's first intelligent advanced AI chatbot powered by a custom Large Language Model. Features natural language understanding, contextual conversations, and multilingual support including Bengali."
+            title: "Predictive Analytics - Barangay Daang Bakal Health Center",
+            category: "Full Stack / ML",
+            technologies: "Laravel, PHP, Machine Learning, Random Forest, XGBoost, MySQL",
+            image: "/images/barangay-health/dashboard.png",
+            github: "https://github.com/Khaeeel/AssembleAfterRevision",
+            description: "Full-stack Laravel PHP application with integrated machine learning for disease outbreak prediction. Implements Random Forest, XGBoost, and Decision Tree algorithms to analyze patient health records and predict health trends."
         },
         {
             id: 2,
-            title: "VoteChain",
-            category: "Blockchain",
-            technologies: "Solidity, Web3.js, React, Ethereum, IPFS, MetaMask, Node.js",
-            image: "/images/votechain.png",
-            description: "A decentralized election system built on blockchain technology ensuring transparent, tamper-proof, and verifiable voting. Features smart contracts for vote integrity and real-time result tracking."
+            title: "Synopsis: Automated Viber Chat Summarizer",
+            category: "AI / Automation",
+            technologies: "Python, Next.js, OCR, LLM, ChromaDB, MySQL, RAG, Docker",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Sypnosis_Project_Full",
+            description: "AI-powered system that captures and analyzes Viber chat conversations using multi-engine OCR and LLMs. Automatically extracts tasks, generates forensic reports, builds a searchable knowledge base using RAG."
         },
         {
             id: 3,
-            title: "EIE - Earthquake Impact Estimator",
-            category: "IoT / Hardware",
-            technologies: "Arduino, C++, IoT Sensors, Python, ML, React",
-            image: "/images/eie.png",
-            description: "A practical circuit-based IoT system utilizing Arduino to predict earthquakes before they strike. Integrates hardware sensors for real-time seismic detection and impact estimation."
+            title: "Stroke Prediction",
+            category: "Machine Learning",
+            technologies: "Python, Pandas, Scikit-learn, Data Analysis",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Machine%20Learning/Stroke%20Prediction",
+            description: "Compares multiple classifiers for medical diagnostics, identifying Support Vector Machine (SVM) as the most accurate model with 97.15% test accuracy, followed by K-Nearest Neighbors at 96.66%."
         },
         {
             id: 4,
-            title: "GameKroy",
-            category: "Full Stack",
-            technologies: "React, Node.js, MongoDB, Express, Stripe, TailwindCSS",
-            image: "/images/gamekroy.png",
-            description: "A full-featured e-commerce platform for gaming products. Includes user authentication, product catalog, shopping cart, secure payments, order tracking, and admin dashboard."
+            title: "MentalBert",
+            category: "NLP / Deep Learning",
+            technologies: "BERT, Transformers, PyTorch, NLP, Fine-tuning",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/MentalBert",
+            description: "Fine-tuning MentalBERT with optimized hyperparameters (Grid and Random Search) significantly improves reliability, achieving 0.98 accuracy and 0.975 F1-score."
         },
         {
             id: 5,
-            title: "RedxChess",
-            category: "AI / Game Engine",
-            technologies: "Python, C++, Neural Networks, Bitboards, UCI Protocol",
-            image: "/images/redxchess.png",
-            description: "A high-performance chess engine rated 3640 ELO. Features advanced search algorithms, neural network evaluation, and optimized bitboard representation for lightning-fast move generation."
+            title: "Sentiment Analysis",
+            category: "NLP",
+            technologies: "NLP, Scikit-learn, Python, Text Analysis, Hugging Face",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Sentiment%20Analysis",
+            description: "Sentiment Classification in Mental Health Texts. Achieved F1-score of 0.983 in detecting suicidal ideation within social media text through systematic hyperparameter tuning."
         },
         {
             id: 6,
-            title: "Floodhub",
-            category: "AI / ML",
-            technologies: "Python, TensorFlow, Pandas, React, FastAPI, GIS",
-            image: "/images/floodhub.png",
-            description: "A flood prediction model specifically designed for Bangladesh's river systems. Analyzes weather patterns, water levels, and historical data to provide accurate flood forecasts and alerts."
+            title: "Named Entity Recognition (NER)",
+            category: "NLP",
+            technologies: "spaCy, NLP, Python, Information Extraction",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Name%20Entity%20Recognition%20(%20NER%20)",
+            description: "Evaluation of spaCy's NER models across news articles revealing similar accuracy (~0.81) across model sizes, suggesting smaller models are more efficient for domain-specific tasks."
         },
         {
             id: 7,
-            title: "Phoenix",
-            category: "AI Assistant",
-            technologies: "Python, Speech Recognition, PyAutoGUI, OpenAI API, Tkinter",
-            image: "/images/phoenix.png",
-            description: "A JARVIS-inspired personal AI desktop assistant. Controls system functions, manages tasks, answers queries, automates workflows, and provides voice-activated computing experience."
+            title: "BERT Question & Answer",
+            category: "NLP / Deep Learning",
+            technologies: "BERT, Transformers, PyTorch, NLP",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/BERT%20-%20QnA",
+            description: "Pre-trained BERT model fine-tuned for extractive question-answering tasks with high accuracy on reading comprehension datasets."
         },
         {
             id: 8,
-            title: "HekTools",
-            category: "Security / Android",
-            technologies: "Kotlin, Android SDK, Firebase, Python, Encryption",
-            image: "/images/hektools.png",
-            description: "An advanced Android monitoring and security research tool. Features remote device management, activity logging, and encrypted data transmission for security testing purposes."
+            title: "Multi-Layer Perceptron (MLP)",
+            category: "Deep Learning",
+            technologies: "TensorFlow, Neural Networks, Keras, Python",
+            image: "/images/placeholder.webp",
+            github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/MLP",
+            description: "Explores Multi-Layer Perceptrons for educational resource planning achieving peak testing accuracy of 96.48% after rigorous data preprocessing and refinement."
+        },
+        {
+            id: 9,
+            title: "Graphic Design Portfolio",
+            category: "Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator, Figma, Canva",
+            image: "/images/gp/art1.jpg",
+            github: "#",
+            description: "Professional graphic design projects showcasing expertise in visual design, branding, logo design, UI/UX, and creative composition for events and marketing materials."
         }
     ],
     contact: {
-        email: "redoyanul1234@gmail.com",
-        github: "https://github.com/red1-for-hek",
-        linkedin: "https://linkedin.com/in/red1-for-hek",
-        twitter: "https://x.com/red_1_ul",
-        facebook: "https://www.facebook.com/redoyanulhaque.hacker.official",
-        instagram: "https://www.instagram.com/red_1_ul"
+        email: "dmncalmzn@gmail.com",
+        github: "https://github.com/Khaeeel",
+        linkedin: "https://www.linkedin.com/in/dominic-almazan-58b387397/",
+        facebook: "https://www.facebook.com/dominicalmazan77/"
     },
+    certificates: [
+        {
+            title: 'AI-For-Good Students',
+            issuer: 'AI SINGAPORE',
+            description: 'Awarded for active participation and accomplishments in the AI-For-Good Students Program by AI Singapore, promoting the use of artificial intelligence for social good.',
+            image: '/images/Certificates/AI-For-Good-Studenudents_Almazan-Dominic.jpg',
+        },
+        {
+            title: 'PSITE-STUDENT CONGRESS 2026: From code to Confidence',
+            issuer: 'Security and AI for the next generation of computing students',
+            description: 'Recognized for participating in the PSITE Student Congress 2026: From Code to Confidence, highlighting developments in cybersecurity and artificial intelligence in modern computing education.',
+            image: '/images/Certificates/Dominic_Boy_P__Almazan_69a4c8bca457d35eca6259a0_page-0001.jpg',
+        },
+    ],
     skills: {
         develop: {
-            title: "AI DEVELOPER",
-            description: "Building intelligent systems & AI solutions",
-            details: "Developing AI agents, chatbots, and machine learning models using Python, TensorFlow, and PyTorch. Specializing in LLMs, NLP, deep learning, and autonomous systems.",
-            tools: ["Python", "TensorFlow", "PyTorch", "OpenCV", "Scikit-learn", "LLMs", "NLP", "Deep Learning", "Chatbots", "AI Agents"]
+            title: "AI/ML ENGINEER",
+            description: "Building intelligent data-driven systems",
+            details: "Developing machine learning models, predictive analytics systems, and AI-powered automation. Specializing in NLP, LLMs, RAG systems, OCR, and data processing with practical real-world applications.",
+            tools: ["Python", "Machine Learning", "Predictive Analytics", "NLP / LLM", "RAG", "ChromaDB", "OCR", "Data Processing"]
         },
         design: {
             title: "FULL-STACK",
-            description: "Modern web development & scalable applications",
-            details: "Building responsive and performant web applications using React, Next.js, Node.js, and databases. Creating seamless user experiences with modern UI/UX principles.",
-            tools: ["React", "Next.js", "Node.js", "TypeScript", "MongoDB", "PostgreSQL", "TailwindCSS", "REST APIs", "Docker", "Git"]
+            description: "Building end-to-end solutions",
+            details: "Developing full-stack applications combining backend systems (Laravel, Flask, Python), databases (MySQL), and frontend interfaces. Creating REST APIs, analytics dashboards, and integrated AI solutions.",
+            tools: ["Python", "JavaScript", "React", "Next.js", "Flask", "Laravel", "PHP", "MySQL", "REST APIs", "Git"]
+        },
+        tools: {
+            title: "DESIGN & TOOLS",
+            description: "Supporting creative and development workflow",
+            details: "Using industry-standard tools for design, version control, and collaboration. Skilled in UI/UX design, data visualization, and modern development tools.",
+            tools: ["Figma", "Adobe Photoshop", "Git / GitHub", "Canva", "MS Office", "Mapbox GL JS"]
         }
     }
 };
