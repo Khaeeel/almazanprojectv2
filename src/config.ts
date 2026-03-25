@@ -12,7 +12,7 @@ export const config = {
     },
     about: {
         title: "About Me",
-        description: "I am a graduating IT student with a strong focus on Artificial Intelligence and Machine Learning. Throughout my academic journey, I have developed and experimented with predictive models, natural language processing applications such as sentiment analysis, summarization, and named entity recognition, and AI-powered automation systems integrating OCR and Large Language Models. I enjoy building intelligent systems that solve real-world problems from classification models to end-to-end AI pipelines that transform raw data into meaningful insights. My experience combines machine learning experimentation, backend development using Laravel, and database structuring for analytics-driven applications. As I prepare to enter the industry, I am eager to contribute to innovative AI-driven projects, continuously improve my technical skills, and grow as a machine learning engineer who builds practical and impactful solutions."
+        description: "I'm a graduating IT student passionate about AI and Machine Learning. I build intelligent systems using predictive models, NLP, OCR, and LLMs to solve real-world problems. My experience spans machine learning development, full-stack backend engineering with Laravel, and creating data-driven solutions that transform raw data into meaningful insights."
     },
     experiences: [
         {
@@ -62,16 +62,16 @@ export const config = {
         },
         {
             position: "Graphic Designer",
-            company: "Freelance & University Events",
+            company: "University Events",
             period: "2022 - 2024",
             location: "Philippines",
-            description: "Created professional graphic designs for marketing materials, social media, branding, and institutional events.",
+            description: "Designed professional vector-based graphics and posters for marketing materials, social media, branding, and institutional events, and served as a graphic designer for the JRU Pep Squad, producing visual content for performances and promotions.",
             responsibilities: [
-                "Designing logos and brand identity systems",
-                "Creating social media graphics and promotional materials",
-                "Designing event posters and announcements",
-                "Developing digital marketing content",
-                "Art direction and visual composition"
+                "Creating vector-based designs including logos and brand identity systems",
+                "Designing social media graphics and promotional materials",
+                "Producing posters and visual content for events, including JRU Pep Squad performances",
+                "Developing digital marketing and branding content",
+                "Applying strong art direction, layout, and visual composition principles"
             ],
             technologies: ["Adobe Photoshop", "Adobe Illustrator", "Figma", "Canva"]
         },
@@ -182,7 +182,7 @@ export const config = {
     ],
     skills: {
         develop: {
-            title: "AI/ML ENGINEER",
+            title: "AI/ML DEVELOPER",
             description: "Building intelligent data-driven systems",
             details: "Developing machine learning models, predictive analytics systems, and AI-powered automation. Specializing in NLP, LLMs, RAG systems, OCR, and data processing with practical real-world applications.",
             tools: ["Python", "Machine Learning", "Predictive Analytics", "NLP / LLM", "RAG", "ChromaDB", "OCR", "Data Processing"]
