@@ -101,7 +101,8 @@ export const config = {
             title: "Stroke Prediction",
             category: "Machine Learning",
             technologies: "Python, Pandas, Scikit-learn, Data Analysis",
-            image: "/images/placeholder.webp",
+            image: "/COVER/strokecover.png",
+            workImage: "/projects/STROKE.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Machine%20Learning/Stroke%20Prediction",
             description: "Compares multiple classifiers for medical diagnostics, identifying Support Vector Machine (SVM) as the most accurate model with 97.15% test accuracy, followed by K-Nearest Neighbors at 96.66%."
         },
@@ -110,7 +111,8 @@ export const config = {
             title: "MentalBert",
             category: "NLP / Deep Learning",
             technologies: "BERT, Transformers, PyTorch, NLP, Fine-tuning",
-            image: "/images/placeholder.webp",
+            image: "/COVER/mentalbertcover.png",
+            workImage: "/projects/mentalbert.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/MentalBert",
             description: "Fine-tuning MentalBERT with optimized hyperparameters (Grid and Random Search) significantly improves reliability, achieving 0.98 accuracy and 0.975 F1-score."
         },
@@ -119,7 +121,8 @@ export const config = {
             title: "Sentiment Analysis",
             category: "NLP",
             technologies: "NLP, Scikit-learn, Python, Text Analysis, Hugging Face",
-            image: "/images/placeholder.webp",
+            image: "/COVER/SentimentCOVER.png",
+            workImage: "/projects/Sentiment Analysis.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Sentiment%20Analysis",
             description: "Sentiment Classification in Mental Health Texts. Achieved F1-score of 0.983 in detecting suicidal ideation within social media text through systematic hyperparameter tuning."
         },
@@ -128,7 +131,7 @@ export const config = {
             title: "Named Entity Recognition (NER)",
             category: "NLP",
             technologies: "spaCy, NLP, Python, Information Extraction",
-            image: "/images/placeholder.webp",
+            image: "/COVER/NERcover.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/Name%20Entity%20Recognition%20(%20NER%20)",
             description: "Evaluation of spaCy's NER models across news articles revealing similar accuracy (~0.81) across model sizes, suggesting smaller models are more efficient for domain-specific tasks."
         },
@@ -137,7 +140,7 @@ export const config = {
             title: "BERT Question & Answer",
             category: "NLP / Deep Learning",
             technologies: "BERT, Transformers, PyTorch, NLP",
-            image: "/images/placeholder.webp",
+            image: "/COVER/BERTCOVER.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/BERT%20-%20QnA",
             description: "Pre-trained BERT model fine-tuned for extractive question-answering tasks with high accuracy on reading comprehension datasets."
         },
@@ -146,7 +149,7 @@ export const config = {
             title: "Multi-Layer Perceptron (MLP)",
             category: "Deep Learning",
             technologies: "TensorFlow, Neural Networks, Keras, Python",
-            image: "/images/placeholder.webp",
+            image: "/COVER/mlpcover.png",
             github: "https://github.com/Khaeeel/Project-ML-and-AI/tree/main/MLP",
             description: "Explores Multi-Layer Perceptrons for educational resource planning achieving peak testing accuracy of 96.48% after rigorous data preprocessing and refinement."
         },

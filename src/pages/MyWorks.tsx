@@ -22,13 +22,14 @@ const MyWorks = () => {
             <div className="myworks-card-number">0{index + 1}</div>
             <div className="myworks-card-image">
               <img src={project.image} alt={project.title} />
+              <div className="myworks-card-title-overlay">
+                <h3>{project.title}</h3>
+                <p className="myworks-card-category">{project.category}</p>
+              </div>
             </div>
             <div className="myworks-card-info">
               <div className="myworks-card-header">
-                <div>
-                  <h3>{project.title}</h3>
-                  <p className="myworks-card-category">{project.category}</p>
-                </div>
+                <div></div>
                 {project.github && project.github !== '#' && (
                   <a 
                     href={project.github} 

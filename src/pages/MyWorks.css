@@ -83,6 +83,7 @@
   width: 100%;
   height: 220px;
   overflow: hidden;
+  position: relative;
 }
 
 .myworks-card-image img {
@@ -90,6 +91,31 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+}
+
+.myworks-card-title-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.myworks-card-title-overlay h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.myworks-card-title-overlay .myworks-card-category {
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  color: var(--accentColor);
 }
 
 .myworks-card:hover .myworks-card-image img {
