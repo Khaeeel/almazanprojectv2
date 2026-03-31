@@ -20,15 +20,17 @@ export const config = {
             company: "Cornersteel Systems Corporation",
             period: "2024 - Present",
             location: "Philippines",
-            description: "Developing AI-powered automation systems using advanced NLP and OCR technologies. Working on Synopsis project - an intelligent chatbot system that captures, analyzes, and summarizes conversations using multi-engine OCR, LLMs, and RAG systems for knowledge management.",
+            description: "Developing AI-powered automation systems using advanced NLP and OCR technologies. Contributing to both frontend and backend development using Next.js and MySQL. Working on Synopsis project - an intelligent chatbot system that captures, analyzes, and summarizes conversations using multi-engine OCR, LLMs, and RAG systems for knowledge management.",
             responsibilities: [
                 "Building OCR and LLM-based automation with EasyOCR and PaddleOCR",
                 "Implementing RAG systems with ChromaDB for intelligent knowledge management",
                 "Developing conversation analysis and summarization pipelines",
                 "Creating REST APIs with Python Flask for backend services",
+                "Developing frontend interfaces with Next.js",
+                "Managing database schemas and optimization with MySQL",
                 "Integrating NLP models for text extraction and processing"
             ],
-            technologies: ["Python", "OCR", "LLM", "RAG", "ChromaDB", "Flask", "NLP", "Docker"]
+            technologies: ["Python", "OCR", "LLM", "RAG", "ChromaDB", "Flask", "NLP", "Docker", "Next.js", "MySQL"]
         },
         {
             position: "Full-Stack Developer",
