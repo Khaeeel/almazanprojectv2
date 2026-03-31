@@ -44,6 +44,16 @@
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  height: auto;
+  background: none;
+}
+.navbar-logo {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  background: none;
 }
 @media only screen and (min-width: 500px) {
   .header {
@@ -59,6 +69,9 @@
   }
   .navbar-title {
     font-size: 16px;
+  }
+  .navbar-logo {
+    height: 110px;
   }
 }
 @media only screen and (min-width: 900px) {
@@ -79,5 +92,8 @@
   }
   .navbar-title {
     font-size: 18px;
+  }
+  .navbar-logo {
+    height: 130px;
   }
 }

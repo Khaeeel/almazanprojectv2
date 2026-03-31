@@ -198,6 +198,12 @@
   font-size: 14px;
   letter-spacing: 0.2px;
 }
+.loader-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  background: none;
+}
 @keyframes blink {
   0% {
     opacity: 0;
@@ -352,6 +358,9 @@
   .loader-title {
     font-size: 16px;
   }
+  .loader-logo {
+    height: 150px;
+  }
 }
 @media only screen and (min-width: 1200px) {
   .loading-header {
@@ -359,5 +368,8 @@
   }
   .loader-title {
     font-size: 18px;
+  }
+  .loader-logo {
+    height: 180px;
   }
 }

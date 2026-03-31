@@ -160,7 +160,143 @@ export const config = {
             technologies: "Adobe Photoshop, Adobe Illustrator, Figma, Canva",
             image: "/images/gp/art1.jpg",
             github: "#",
-            description: "Professional graphic design projects showcasing expertise in visual design, branding, logo design, UI/UX, and creative composition for events and marketing materials."
+            description: "Professional graphic design projects showcasing expertise in visual design, branding, logo design, UI/UX, and creative composition for events and marketing materials.",
+            isModal: true
+        }
+    ],
+    graphicDesignWorks: [
+        {
+            id: 1,
+            title: "Art Concept 1",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/art1.jpg",
+            description: "Professional art and visual design concept showcasing creative composition and digital artistry."
+        },
+        {
+            id: 2,
+            title: "Art Concept 2",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/art 2.jpg",
+            description: "Creative visual design project demonstrating advanced composition and artistic techniques."
+        },
+        {
+            id: 3,
+            title: "Art Concept 3",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/art 3.jpg",
+            description: "Professional artistic creation showcasing visual depth and design innovation."
+        },
+        {
+            id: 4,
+            title: "AB Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/AB.png",
+            description: "JRU PEP Squad male uniform design featuring distinctive styling and professional branding for competitive dance performances."
+        },
+        {
+            id: 5,
+            title: "ABA Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/ABA.png",
+            description: "JRU PEP Squad female uniform design showcasing elegant silhouette and coordinated style for dance performances."
+        },
+        {
+            id: 6,
+            title: "AF1 - PEP Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/AF1 - PEP (2).png",
+            description: "Professional event design for PEP activities, showcasing brand cohesion and visual appeal."
+        },
+        {
+            id: 7,
+            title: "Branding Card Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/Branding Card 4.jpg",
+            description: "Professional branding and card design demonstrating attention to detail and brand consistency."
+        },
+        {
+            id: 8,
+            title: "Branding Final",
+            technologies: "Adobe Photoshop, Adobe Illustrator, Figma",
+            image: "/images/gp/Branding Final.jpg",
+            description: "Comprehensive branding project showcasing complete brand identity system and visual guidelines."
+        },
+        {
+            id: 9,
+            title: "DAY 4 Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/DAY 4.png",
+            description: "Event countdown design with vibrant colors and engaging visual hierarchy."
+        },
+        {
+            id: 10,
+            title: "1 DAY TO GO",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/1 DAY TO GO.png",
+            description: "Promotional event design creating urgency and excitement through bold typography and composition."
+        },
+        {
+            id: 11,
+            title: "JRU PEP 101 Logo",
+            technologies: "Adobe Illustrator, Figma",
+            image: "/images/gp/JRU PEP 101 LOGO.png",
+            description: "Professional logo design for JRU PEP squad featuring clean lines and memorable branding."
+        },
+        {
+            id: 12,
+            title: "PEP Countdown 2024",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/PEP COUNTDOWN 2024.png",
+            description: "Dynamic countdown visual for 2024 PEP event, combining energetic design with event branding."
+        },
+        {
+            id: 13,
+            title: "PEP Profile Concept",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/PEP PROFILE CONCEPT copy.png",
+            description: "Character profile design concept for PEP squad showcasing personality and visual storytelling."
+        },
+        {
+            id: 14,
+            title: "PEP Rally Landscape",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/PEP RALLY LANDSCAPE.png",
+            description: "Landscape format design for PEP rally events with immersive visual composition."
+        },
+        {
+            id: 15,
+            title: "JRU 100 Poster",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/Poster JRU 100 res.png",
+            description: "High-resolution poster design celebrating JRU 100 centennial with professional typography and imagery."
+        },
+        {
+            id: 16,
+            title: "Thank You Design",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/THANKYOU MWA.png",
+            description: "Appreciation and gratitude-themed design with elegant typography and warm visual treatment."
+        },
+        {
+            id: 17,
+            title: "Creative Visual Concept 1",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/KVXaxL13.jpg",
+            description: "Unique creative visual concept showcasing innovative design thinking and artistic expression."
+        },
+        {
+            id: 18,
+            title: "Creative Visual Concept 2",
+            technologies: "Adobe Photoshop, Adobe Illustrator",
+            image: "/images/gp/WU3SwShX.jpg",
+            description: "Alternative creative concept demonstrating diverse design approaches and visual experimentation."
+        },
+        {
+            id: 19,
+            title: "Professional Event Photo",
+            technologies: "Adobe Photoshop, Photography",
+            image: "/images/gp/258727126_1414761788917688_1236817021846704824_n.png",
+            description: "Professional event photography and documentation showcasing real-world design implementations."
         }
     ],
     contact: {

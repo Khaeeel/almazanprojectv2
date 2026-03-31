@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { config } from "../config";
+import GraphicDesignModal from "../components/GraphicDesignModal";
 import "./MyWorks.css";
 
 const MyWorks = () => {
+  const [isGraphicDesignOpen, setIsGraphicDesignOpen] = useState(false);
   return (
     <div className="myworks-page">
       <div className="myworks-header">
@@ -18,7 +21,13 @@ const MyWorks = () => {
 
       <div className="myworks-grid">
         {config.projects.map((project, index) => (
-          <div className="myworks-card" key={project.id} data-cursor="disable">
+          <div
+            className="myworks-card"
+            key={project.id}
+            data-cursor="disable"
+            onClick={() => project.isModal && setIsGraphicDesignOpen(true)}
+            style={{ cursor: project.isModal ? "pointer" : "default" }}
+          >
             <div className="myworks-card-number">0{index + 1}</div>
             <div className="myworks-card-image">
               <img src={project.image} alt={project.title} />
@@ -48,6 +57,11 @@ const MyWorks = () => {
           </div>
         ))}
       </div>
+
+      <GraphicDesignModal
+        isOpen={isGraphicDesignOpen}
+        onClose={() => setIsGraphicDesignOpen(false)}
+      />
     </div>
   );
 };
