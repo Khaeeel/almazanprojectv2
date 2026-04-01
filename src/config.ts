@@ -94,7 +94,8 @@ export const config = {
             title: "Synopsis: Automated Viber Chat Summarizer",
             category: "AI / Automation",
             technologies: "Python, Next.js, OCR, LLM, ChromaDB, MySQL, RAG, Docker",
-            image: "/images/placeholder.webp",
+            image: "/images/gp/viber_image_2026-04-01_10-08-19-568.png",
+            workImage: "/images/gp/Sypnosis.jpg",
             github: "https://github.com/Khaeeel/Sypnosis_Project_Full",
             description: "AI-powered system that captures and analyzes Viber chat conversations using multi-engine OCR and LLMs. Automatically extracts tasks, generates forensic reports, builds a searchable knowledge base using RAG."
         },

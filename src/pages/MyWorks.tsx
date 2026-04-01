@@ -30,7 +30,7 @@ const MyWorks = () => {
           >
             <div className="myworks-card-number">0{index + 1}</div>
             <div className="myworks-card-image">
-              <img src={project.image} alt={project.title} />
+              <img src={project.workImage || project.image} alt={project.title} />
               <div className="myworks-card-title-overlay">
                 <h3>{project.title}</h3>
                 <p className="myworks-card-category">{project.category}</p>
