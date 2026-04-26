@@ -48,11 +48,11 @@ export const config = {
             technologies: ["Laravel", "PHP", "MySQL", "Random Forest", "XGBoost", "Data Analytics"]
         },
         {
-            position: "NLP & AI Researcher",
+            position: "NLP | Machine Learning | Deep Learning | AI Researcher",
             company: "University Research Projects",
             period: "2023 - 2024",
             location: "Philippines",
-            description: "Conducted research and development in Natural Language Processing, including sentiment analysis, named entity recognition, and fine-tuned transformer models.",
+            description: "Conducted advanced research and development in Natural Language Processing, Machine Learning, and Deep Learning. Specialized in sentiment analysis, named entity recognition, transformer model fine-tuning, and AI-driven innovation to solve complex problems through intelligent algorithms and data-driven methodologies.",
             responsibilities: [
                 "Fine-tuning MentalBERT with optimized hyperparameters (Grid & Random Search)",
                 "Implementing sentiment classification for mental health text analysis",
