@@ -45,7 +45,7 @@ export const config = {
                 "Designed predictive visualization for health trends and case forecasting",
                 "Integrated data analytics and reporting systems"
             ],
-            technologies: ["Laravel", "PHP", "MySQL", "Random Forest", "XGBoost", "Data Analytics"]
+            technologies: ["Laravel", "PHP", "MySQL", "Random Forest", "XGBoost", "Predictive Analytics"]
         },
         {
             position: "NLP | Machine Learning | Deep Learning | AI Researcher",
