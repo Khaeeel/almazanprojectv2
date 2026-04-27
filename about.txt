@@ -1,0 +1,94 @@
+# Portfolio Overview - Dominic Boy Almazan
+
+## Developer Profile
+- **Name:** Dominic Boy Almazan
+- **Title:** AI/Machine Learning Engineer & Full Stack Developer
+- **Location:** Philippines
+- **Email:** dmncalmzn@gmail.com
+- **GitHub:** https://github.com/Khaeeel
+
+## Tech Stack
+React, TypeScript, GSAP, Three.js, WebGL, Vite, React Router
+
+## Portfolio Structure
+
+### Main Route (/)
+The homepage features an immersive 3D experience with:
+- **3D Character Model** - Interactive encrypted GLB model with mouse-following animations (Three.js + React Three Fiber)
+- **Landing Section** - Name introduction with animated text
+- **About Section** - Personal introduction
+- **Career Section** - Timeline of academic/professional experience
+- **Work Section** - Horizontal scroll showcase of top 5 projects
+- **Tech Stack** - Inverted pyramid display of skills with video background
+- **Certificates** - Grid display of achievements
+- **Contact Section** - Contact information and social links
+
+### Secondary Routes
+- **/myworks** - Full project grid with all 9 projects
+- **/play** - Chess game page (RedoxChess)
+
+## Projects (9 Total)
+
+1. **Predictive Analytics - Barangay Health** (Full Stack / ML)
+   - Laravel, PHP, Random Forest, XGBoost, MySQL
+   - Disease outbreak prediction system
+
+2. **Synopsis: Automated Viber Chat Summarizer** (AI / Automation)
+   - React.js, Python, Qwen3.5-8B, EasyOCR, PaddleOCR, ChromaDB, RAG, Docker
+   - AI-powered conversation capture and analysis
+
+3. **Stroke Prediction** (Machine Learning)
+   - Python, scikit-learn, SVM (97.15% accuracy)
+
+4. **MentalBERT** (NLP / Deep Learning)
+   - Hugging Face Transformers, PyTorch (0.98 accuracy, 0.975 F1)
+
+5. **Sentiment Analysis** (NLP)
+   - spaCy, mental health text classification (F1: 0.983)
+
+6. **Named Entity Recognition** (NLP)
+   - spaCy NER evaluation across news articles
+
+7. **BERT Question & Answer** (NLP / Deep Learning)
+   - BERT fine-tuning for extractive QA
+
+8. **Multi-Layer Perceptron** (Deep Learning)
+   - TensorFlow, Keras (96.48% accuracy)
+
+9. **Graphic Design Portfolio** (Design)
+   - 19 design pieces using Adobe Photoshop, Illustrator, Figma
+
+## Key Features
+- Custom cursor with hover effects
+- GSAP scroll-triggered animations
+- Horizontal scroll pinning for work section
+- Loading screen with progress bar
+- Responsive design (mobile/desktop)
+- Vercel analytics integration
+- Graphic design modal gallery
+
+## File Structure
+```
+src/
+├── App.tsx              # Main app with routing
+├── config.ts            # All content/data configuration
+├── components/
+│   ├── Character/       # 3D model component
+│   ├── Landing.tsx      # Hero section
+│   ├── About.tsx        # About section
+│   ├── Career.tsx       # Experience timeline
+│   ├── Work.tsx         # Project showcase
+│   ├── TechStackNew.tsx # Skills pyramid
+│   ├── Certificates.tsx # Achievements
+│   ├── Contact.tsx      # Contact section
+│   └── ...
+├── pages/
+│   ├── MyWorks.tsx      # Full project grid
+│   └── Play.tsx         # Chess game
+└── styles/              # CSS files for components
+```
+
+## Contact Links
+- GitHub: https://github.com/Khaeeel
+- LinkedIn: https://www.linkedin.com/in/dominic-almazan-58b387397/
+- Facebook: https://www.facebook.com/dominicalmazan77/
