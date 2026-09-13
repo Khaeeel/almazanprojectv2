@@ -673,20 +673,21 @@ export function buildRobot(): RobotInstance {
     seam.emissiveIntensity = 1.5 + Math.sin(now * 0.0011) * 0.2;
     head.position.y = Math.sin(now * 0.0011) * 0.02;
 
-    // HUD dial spin; fade out after leaving the hero
-    const hero = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.85));
+    // HUD dial is hero-only — hide fully by the about/desk shot (What I Do)
+    const scrollP = window.scrollY / Math.max(1, window.innerHeight);
+    const hero = Math.max(0, 1 - scrollP / 0.55);
+    const showHud = scrollP < 0.65;
     hud.rotation.z = now * 0.00012;
     hudR2.rotation.z = -now * 0.00019;
     hudR3.rotation.z = now * 0.00008;
-    hud.visible = hero > 0.02;
-    hudHalo.visible = hero > 0.02;
-    ringMat.opacity = Math.min(1, 0.38 * hudStrength * hero);
-    ring2Mat.opacity = Math.min(1, 0.26 * hudStrength * hero);
-    ring3Mat.opacity = Math.min(1, 0.16 * hudStrength * hero);
-    hudHalo.material.opacity = Math.min(
-      1,
-      (0.4 + 0.55 * hero) * hero * hudHaloStrength
-    );
+    hud.visible = showHud;
+    hudHalo.visible = showHud;
+    ringMat.opacity = showHud ? Math.min(1, 0.38 * hudStrength * hero) : 0;
+    ring2Mat.opacity = showHud ? Math.min(1, 0.26 * hudStrength * hero) : 0;
+    ring3Mat.opacity = showHud ? Math.min(1, 0.16 * hudStrength * hero) : 0;
+    hudHalo.material.opacity = showHud
+      ? Math.min(1, (0.4 + 0.55 * hero) * hero * hudHaloStrength)
+      : 0;
 
     if (now > nextBlink) {
       blinkT = now;
