@@ -10,28 +10,38 @@ const Loading = ({ percent }: { percent: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  useEffect(() => {
+    if (percent < 100 || loaded) return;
+    const t1 = setTimeout(() => setLoaded(true), 300);
+    return () => clearTimeout(t1);
+  }, [percent, loaded]);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
+    if (!loaded || isLoaded) return;
+    const t2 = setTimeout(() => setIsLoaded(true), 500);
+    return () => clearTimeout(t2);
+  }, [loaded, isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    let cancelled = false;
+    const t3 = setTimeout(() => {
+      import("./utils/initialFX").then((module) => {
+        if (cancelled) return;
         setClicked(true);
         setTimeout(() => {
           if (module.initialFX) {
             module.initialFX();
           }
           setIsLoading(false);
-        }, 900);
-      }
-    });
-  }, [isLoaded]);
+        }, 700);
+      });
+    }, 0);
+    return () => {
+      cancelled = true;
+      clearTimeout(t3);
+    };
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -102,13 +112,14 @@ export const setProgress = (setLoading: (value: number) => void) => {
       setLoading(percent);
     } else {
       clearInterval(interval);
+      // Keep creeping while shaders/geometry finish — was 2000ms and felt stuck
       interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
+        percent = percent + Math.max(1, Math.round(Math.random() * 2));
         setLoading(percent);
         if (percent > 91) {
           clearInterval(interval);
         }
-      }, 2000);
+      }, 220);
     }
   }, 100);
 

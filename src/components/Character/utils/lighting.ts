@@ -1,9 +1,19 @@
 import * as THREE from "three";
 import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
+import {
+  DEFAULT_PALETTE,
+  PALETTES,
+  type PaletteDef,
+  type PaletteName,
+} from "../../../palettes";
 
 const setLighting = (scene: THREE.Scene) => {
-  const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
+  const initial = PALETTES[DEFAULT_PALETTE];
+  const directionalLight = new THREE.DirectionalLight(
+    initial.lights.directional,
+    0
+  );
   directionalLight.intensity = 0;
   directionalLight.position.set(-0.47, -0.32, -1);
   directionalLight.castShadow = true;
@@ -13,10 +23,22 @@ const setLighting = (scene: THREE.Scene) => {
   directionalLight.shadow.camera.far = 50;
   scene.add(directionalLight);
 
-  const pointLight = new THREE.PointLight(0xc2a4ff, 0, 100, 3);
+  const pointLight = new THREE.PointLight(initial.lights.point, 0, 100, 3);
   pointLight.position.set(3, 12, 4);
   pointLight.castShadow = true;
   scene.add(pointLight);
+
+  const applyLights = (palette: PaletteDef) => {
+    directionalLight.color.setHex(palette.lights.directional);
+    pointLight.color.setHex(palette.lights.point);
+  };
+
+  const onPaletteChange = (event: Event) => {
+    const detail = (event as CustomEvent<{ name: PaletteName; palette: PaletteDef }>)
+      .detail;
+    if (detail?.palette) applyLights(detail.palette);
+  };
+  window.addEventListener("palettechange", onPaletteChange);
 
   new RGBELoader()
     .setPath("/models/")

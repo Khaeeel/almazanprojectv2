@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import "./styles/TechStackNew.css";
+import { useLoading } from "../context/LoadingProvider";
 
 interface TechItem {
   name: string;
@@ -61,27 +63,46 @@ const techStack: TechItem[][] = [
 ];
 
 const TechStackNew = () => {
-  return (
-    <div className="techstack-new">
-      {/* Video Background */}
-      <div className="techstack-video-container">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="techstack-video"
-        >
-          <source src="/video/video.webm" type="video/webm" />
-        </video>
-        {/* Dark Overlay */}
-        <div className="techstack-overlay"></div>
-      </div>
+  const { isLoading } = useLoading();
+  const [showGlobe, setShowGlobe] = useState(false);
+  const [Globe, setGlobe] = useState<typeof import("./TechStackGlobe").default | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-      {/* Content */}
+  // Don't spin up a second WebGL context during the hero loader
+  useEffect(() => {
+    if (isLoading) return;
+    let cancelled = false;
+    import("./TechStackGlobe").then((mod) => {
+      if (!cancelled) setGlobe(() => mod.default);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!Globe || !sectionRef.current) return;
+    const el = sectionRef.current;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowGlobe(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [Globe]);
+
+  return (
+    <div className="techstack-new" ref={sectionRef}>
+      {showGlobe && Globe ? <Globe /> : null}
+
       <div className="techstack-content">
         <h2>Tech Stack</h2>
-        
+
         <div className="techstack-pyramid">
           {techStack.map((row, rowIndex) => (
             <div key={rowIndex} className="techstack-row">

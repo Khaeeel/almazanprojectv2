@@ -110,13 +110,13 @@
   /* Specific styling for the distinct parts */
   .landing-h2-1 {
     font-size: 24px !important;
-    color: var(--accentColor);
+    color: var(--glow);
     font-weight: 700;
   }
 
   .landing-h2-info {
     font-size: 18px !important;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--ink);
   }
 
   .landing-info-h2::after {
@@ -144,7 +144,7 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 40px rgba(194, 164, 255, 0.4));
+    filter: drop-shadow(0 0 40px rgba(var(--accent-rgb), 0.4));
   }
 }
 
@@ -171,8 +171,8 @@
   position: fixed;
   width: 300px;
   height: 300px;
-  background-color: #fb8dff;
-  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
+  background-color: var(--glow);
+  box-shadow: inset -50px 40px 50px var(--glow-inset);
   filter: blur(60px);
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
@@ -211,8 +211,8 @@
   display: none;
   width: 300px;
   height: 300px;
-  background-color: #fb8dff;
-  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.6);
+  background-color: var(--glow);
+  box-shadow: inset -50px 40px 50px var(--glow-inset);
   filter: blur(50px);
   border-radius: 50%;
   animation: loadingCircle2 5s linear infinite;
@@ -244,9 +244,9 @@
   width: 400px;
   height: 400px;
   z-index: 1;
-  background-color: #f59bf8;
+  background-color: var(--glow-hot);
   transform: translate(-50%, 36%) scaleX(1.4);
-  box-shadow: inset 66px 35px 85px 0px rgba(85, 0, 255, 0.65);
+  box-shadow: inset 66px 35px 85px 0px var(--glow-inset);
   filter: blur(50px);
   border-radius: 50%;
   top: 50%;
@@ -340,6 +340,7 @@
   line-height: 28px;
   font-weight: 500;
   font-family: "Geist", sans-serif;
+  color: var(--ink);
 }
 
 /* .landing-intro h1 span {
@@ -365,31 +366,35 @@
 
 .landing-info h2 {
   margin: 0;
-  margin-top: -20px;
-  margin-left: 20px;
+  margin-left: 0;
   font-family: "Geist", sans-serif;
   font-weight: 600;
   font-size: 34px;
-  line-height: 40px;
+  line-height: 1.15;
   position: relative;
-  display: flex;
-  flex-wrap: nowrap;
+  display: block;
   text-transform: uppercase;
   letter-spacing: 2px;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.landing-info h2 + h2 {
+  margin-top: 8px;
 }
 
 .landing-h2-info {
-  white-space: nowrap;
+  white-space: normal;
   font-size: 34px;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
   font-weight: 600;
 }
 
 .landing-h2-1 {
-  font-size: 42px;
-  color: var(--accentColor);
+  font-size: clamp(22px, 2.6vw, 42px);
+  /* --glow reads on both dark and cream backgrounds; --accent-deep does not */
+  color: var(--glow);
   font-weight: 600;
+  white-space: normal;
 }
 
 .landing-h2-info-1 {
@@ -399,14 +404,15 @@
 }
 
 h2.landing-info-h2 {
-  color: #c481ff;
-  font-size: 42px;
-  width: 150%;
+  color: var(--glow);
+  font-size: clamp(22px, 2.6vw, 42px);
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   font-family: "Geist", sans-serif;
   font-weight: 600;
   position: relative;
-  margin-left: -5px;
+  margin-left: 0;
 }
 
 .landing-h2-2 {
@@ -415,17 +421,16 @@ h2.landing-info-h2 {
   white-space: nowrap;
 }
 
+/* Old fade mask stacked the two titles into one unreadable blob */
 .landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  background-image: linear-gradient(0deg,
-      var(--backgroundColor) 40%,
-      rgba(0, 0, 0, 0) 110%);
-  top: 0;
-  left: 0;
+  display: none;
+}
+
+/* Keep vertical clip for char reveal, but don't truncate long titles */
+.landing-info .split-h2 {
+  display: block;
+  white-space: normal;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 500px) {
@@ -452,11 +457,11 @@ h2.landing-info-h2 {
 
   .landing-info h2 {
     font-size: 35px;
-    line-height: 40px;
+    line-height: 1.15;
   }
 
   h2.landing-info-h2 {
-    font-size: 38px;
+    font-size: clamp(24px, 2.8vw, 38px);
   }
 }
 
@@ -479,12 +484,12 @@ h2.landing-info-h2 {
   }
 
   .landing-info h2 {
-    font-size: 45px;
-    line-height: 42px;
+    font-size: clamp(28px, 3.2vw, 45px);
+    line-height: 1.15;
   }
 
   h2.landing-info-h2 {
-    font-size: 55px;
+    font-size: clamp(26px, 3vw, 48px);
   }
 }
 
@@ -511,11 +516,12 @@ h2.landing-info-h2 {
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
+    z-index: 12;
     text-align: left;
     transform: translate(0%, -50%);
-    right: auto;
-    left: 66%;
+    right: 1.5rem;
+    left: 58%;
+    max-width: min(40vw, 520px);
   }
 }
 
@@ -530,11 +536,12 @@ h2.landing-info-h2 {
   .landing-info {
     bottom: auto;
     top: 51%;
-    z-index: inherit;
+    z-index: 12;
     text-align: left;
     transform: translate(0%, -50%);
-    right: auto;
-    left: 70%;
+    right: 2rem;
+    left: 62%;
+    max-width: min(36vw, 560px);
   }
 }
 
@@ -553,11 +560,11 @@ h2.landing-info-h2 {
   }
 
   .landing-info h2 {
-    font-size: 65px;
-    line-height: 62px;
+    font-size: clamp(36px, 3.5vw, 58px);
+    line-height: 1.12;
   }
 
   h2.landing-info-h2 {
-    font-size: 75px;
+    font-size: clamp(32px, 3.2vw, 64px);
   }
 }

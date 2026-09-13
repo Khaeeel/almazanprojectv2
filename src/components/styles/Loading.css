@@ -2,12 +2,12 @@
   position: fixed;
   width: 100vw;
   height: var(--vh);
-  /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+  background-color: var(--backgroundColor);
   z-index: 999999999;
   display: flex;
   place-items: center;
   justify-content: center;
+  transition: background-color 0.6s ease;
 }
 .loading-button {
   padding: 20px 50px;
@@ -18,6 +18,8 @@
   font-weight: 500;
   position: relative;
   z-index: 9;
+  /* Always light on black pill — --ink is dark maroon and unreadable here */
+  color: #f4ecdf;
 }
 .loading-button::before {
   content: "";
@@ -70,7 +72,7 @@
   overflow: visible;
 }
 .loading-hover {
-  background-color: #a87cff;
+  background-color: var(--accentColor);
   width: 250px;
   height: 120px;
   position: absolute;
@@ -97,11 +99,13 @@
   overflow: hidden;
   transition: 0.6s;
   text-transform: uppercase;
+  color: #f4ecdf;
 }
 .loading-content-in {
   position: relative;
   width: var(--Lsize);
   overflow: hidden;
+  color: #f4ecdf;
 }
 .loading-content2 {
   position: relative;
@@ -116,6 +120,7 @@
   text-align: center;
   transition: 1s;
   max-width: var(--Lsize);
+  color: #f4ecdf;
 }
 .loading-clicked .loading-content2 {
   opacity: 0;
@@ -191,7 +196,7 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  color: var(--backgroundColor);
+  color: var(--ink);
 }
 .loader-title {
   font-weight: 700;
@@ -278,7 +283,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #a87cff;
+  background-color: var(--accentColor);
   animation: ball25 7s infinite;
   transform: translateY(10px);
   animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
@@ -289,7 +294,8 @@
   left: 0;
   width: 100%;
   transform: translateY(-50%);
-  color: var(--backgroundColor);
+  color: var(--accentColor);
+  opacity: 0.45;
   font-size: 60px;
   font-weight: 600;
   text-transform: uppercase;
@@ -302,7 +308,8 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: var(--backgroundColor);
+  background-color: var(--accentColor);
+  opacity: 0.7;
   position: absolute;
   top: 50%;
   border-radius: 50px;

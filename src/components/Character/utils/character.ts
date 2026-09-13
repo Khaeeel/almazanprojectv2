@@ -1,57 +1,52 @@
 import * as THREE from "three";
-import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
+import { GLTF } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
-import { decryptFile } from "./decrypt";
+import { buildRobot, type RobotInstance } from "./buildRobot";
+
+let robotRef: RobotInstance | null = null;
+
+export const getRobot = () => robotRef;
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
   scene: THREE.Scene,
   camera: THREE.PerspectiveCamera
 ) => {
-  const loader = new GLTFLoader();
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("/draco/");
-  loader.setDRACOLoader(dracoLoader);
-
   const loadCharacter = () => {
     return new Promise<GLTF | null>(async (resolve, reject) => {
       try {
-        const encryptedBlob = await decryptFile(
-          "/models/character.enc",
-          "Character3D#@"
-        );
-        const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
+        const robot = buildRobot();
+        robotRef = robot;
+        const character = robot.character;
 
-        let character: THREE.Object3D;
-        loader.load(
-          blobUrl,
-          async (gltf) => {
-            character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
-            character.traverse((child: any) => {
-              if (child.isMesh) {
-                const mesh = child as THREE.Mesh;
-                child.castShadow = false;
-                child.receiveShadow = false;
-                mesh.frustumCulled = true;
-                if (mesh.material && !Array.isArray(mesh.material)) {
-                  (mesh.material as THREE.ShaderMaterial).precision = 'mediump';
-                }
-              }
-            });
-            resolve(gltf);
-            setCharTimeline(character, camera);
-            setAllTimeline();
-            character!.getObjectByName("footR")!.position.y = 3.36;
-            character!.getObjectByName("footL")!.position.y = 3.36;
-            dracoLoader.dispose();
-          },
-          undefined,
-          (error) => {
-            console.error("Error loading GLTF model:", error);
-            reject(error);
+        // Cap compile wait so the loader doesn't hang on shader warmup
+        await Promise.race([
+          renderer.compileAsync(character, camera, scene),
+          new Promise<void>((r) => setTimeout(r, 600)),
+        ]);
+
+        character.traverse((child: any) => {
+          if (child.isMesh) {
+            child.castShadow = false;
+            child.receiveShadow = false;
+            child.frustumCulled = true;
           }
-        );
+        });
+
+        // Minimal GLTF-shaped object so existing Scene/animation wiring stays intact
+        const gltf = {
+          scene: character,
+          scenes: [character],
+          animations: [] as THREE.AnimationClip[],
+          cameras: [],
+          asset: {},
+          parser: {},
+          userData: {},
+        } as unknown as GLTF;
+
+        setCharTimeline(character, camera);
+        setAllTimeline();
+        resolve(gltf);
       } catch (err) {
         reject(err);
         console.error(err);

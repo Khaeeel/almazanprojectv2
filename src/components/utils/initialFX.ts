@@ -9,7 +9,10 @@ export function initialFX() {
   }
   document.getElementsByTagName("main")[0].classList.add("main-active");
   gsap.to("body", {
-    backgroundColor: "#0b080c",
+    backgroundColor:
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--backgroundColor")
+        .trim() || "#f4ecdf",
     duration: 0.5,
     delay: 1,
   });
@@ -77,8 +80,27 @@ export function initialFX() {
   var landingText4 = new TextSplitter(".landing-h2-1", TextProps);
   var landingText5 = new TextSplitter(".landing-h2-2", TextProps);
 
-  LoopText(landingText2, landingText3);
-  LoopText(landingText4, landingText5);
+  // Only loop when both lines exist — otherwise chars animate off and stay gone
+  if (landingText2.chars.length && landingText3.chars.length) {
+    LoopText(landingText2, landingText3);
+  }
+  if (landingText4.chars.length && landingText5.chars.length) {
+    LoopText(landingText4, landingText5);
+  } else if (landingText4.chars.length) {
+    gsap.fromTo(
+      landingText4.chars,
+      { opacity: 0, y: 80, filter: "blur(5px)" },
+      {
+        opacity: 1,
+        duration: 1.2,
+        filter: "blur(0px)",
+        ease: "power3.inOut",
+        y: 0,
+        stagger: 0.025,
+        delay: 0.3,
+      }
+    );
+  }
 }
 
 function LoopText(Text1: TextSplitter, Text2: TextSplitter) {

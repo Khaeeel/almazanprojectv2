@@ -9,7 +9,8 @@
   width: var(--cWidth);
   max-width: 1920px;
   margin: auto;
-  z-index: 9;
+  /* Sit above the fixed character canvas so cream text isn't washed out */
+  z-index: 12;
 }
 
 .what-box {
@@ -17,7 +18,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: 9;
+  z-index: 12;
 }
 
 .what-box h2 {
@@ -26,10 +27,13 @@
   font-weight: 600;
   margin-right: 10%;
   margin-bottom: 100px;
+  color: var(--ink);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--backgroundColor) 80%, transparent);
 }
 
 .hat-h2 {
   font-style: italic;
+  color: var(--ink);
 }
 
 .do-h2 {
@@ -54,6 +58,9 @@
   padding: 20px 50px;
   box-sizing: border-box;
   overflow: hidden;
+  /* Opaque panel so body copy stays readable over the robot/desk */
+  background: color-mix(in srgb, var(--backgroundColor) 92%, transparent);
+  border-radius: 2px;
 }
 
 .what-noTouch:hover,
@@ -63,6 +70,7 @@
   padding: 40px 50px;
   z-index: 10;
   transition-delay: 0s;
+  background: var(--backgroundColor);
 }
 
 .what-noTouch:hover~.what-content,
@@ -78,21 +86,25 @@
   font-size: 38px;
   letter-spacing: 1px;
   margin: 0;
+  color: var(--ink);
 }
 
 .what-content p {
   font-size: 16px;
-  line-height: 20px;
-  font-weight: 200;
-  letter-spacing: 0.7px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  color: var(--ink);
+  opacity: 0.88;
 }
 
 .what-content h4 {
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 1px;
   margin: 0px;
   font-size: 16px;
-  opacity: 0.3;
+  opacity: 1;
+  color: var(--accentColor);
 }
 
 .what-content-in {
@@ -126,7 +138,7 @@
   width: 10px;
   height: 10px;
   position: absolute;
-  border: 4px solid #fff;
+  border: 4px solid var(--accentColor);
   opacity: 0;
   animation: whatCorners 0.2s 1 forwards;
   animation-delay: 0.5s;
@@ -172,7 +184,7 @@
   right: 20px;
   width: 25px;
   height: 25px;
-  border: 1px solid #fff;
+  border: 1px solid var(--accentColor);
 }
 
 .what-arrow::before {
@@ -181,8 +193,8 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-left: 1px solid var(--accentColor);
+  border-bottom: 1px solid var(--accentColor);
   transition: 0.5s;
   width: 10px;
   height: 10px;
@@ -205,6 +217,7 @@
   overflow: hidden;
   opacity: 0.8;
   animation: whatBorders 1.2s 1 forwards;
+  color: var(--accentColor);
 }
 
 .what-border1 svg {
@@ -226,6 +239,7 @@
   transition: 0.5s;
   opacity: 0.8;
   animation: whatBorders 1.2s 1 forwards;
+  color: var(--accentColor);
 }
 
 .what-border2 svg {
@@ -243,12 +257,13 @@
 }
 
 .what-content-in h5 {
-  font-weight: 300;
-  opacity: 0.5;
+  font-weight: 500;
+  opacity: 1;
   font-size: 13px;
   letter-spacing: 1px;
   font-family: "Geist", sans-serif;
   margin-bottom: 5px;
+  color: var(--accentColor);
 }
 
 @keyframes whatBorders {
@@ -259,7 +274,7 @@
   100% {
     max-height: 100%;
     max-width: 100%;
-    opacity: 0.2;
+    opacity: 0.55;
   }
 }
 
@@ -271,11 +286,12 @@
 
 .what-tags {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   padding: 2px 7px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid #ffffff50;
+  background-color: rgba(var(--accent-rgb), 0.14);
+  border: 1px solid color-mix(in srgb, var(--accentColor) 45%, transparent);
   border-radius: 30px;
+  color: var(--ink);
 }
 
 @media only screen and (max-width: 1600px) {

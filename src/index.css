@@ -8,7 +8,7 @@
   line-height: 1.5;
   scroll-behavior: smooth;
   color-scheme: light dark;
-  color: #eae5ec;
+  color: var(--ink);
   background-color: var(--backgroundColor);
 
   font-synthesis: none;
@@ -18,10 +18,28 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  --accentColor: #c2a4ff;
-  --backgroundColor: #0b080c;
+  /* Default: Maroon & cream (from vibe-coded robot design) */
+  --accentColor: #7a1e2e;
+  --accent-deep: #b8464f;
+  --backgroundColor: #f4ecdf;
+  --ink: #3a1218;
+  --muted: #8a6a6e;
+  --line: rgba(58, 18, 24, 0.35);
+  --glow: #d0505c;
+  --glow-hot: #e0473c;
+  --glow-inset: rgba(122, 30, 46, 0.55);
+  --accent-rgb: 122, 30, 46;
+  --orb: #7a1e2e;
+  --orb-glow: 150, 40, 60;
+  --orb-glow2: 200, 90, 80;
   --vh: 100vh;
   --vh: 100svh;
+}
+
+/* White logo vanishes on cream — hide on maroon & cream */
+html[data-palette="maroon"] .navbar-logo,
+html[data-palette="maroon"] .loader-logo {
+  display: none;
 }
 
 h1,
@@ -88,13 +106,15 @@ main {
 body {
   margin: 0;
   height: auto;
-  background-color: #000;
+  background-color: var(--backgroundColor);
+  color: var(--ink);
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;
   max-width: 100vw;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 .main-body {
@@ -137,7 +157,11 @@ body {
   margin-bottom: 0;
   padding-top: 150px;
   padding-bottom: 150px;
-  background: linear-gradient(180deg, rgba(11, 8, 12, 0.95) 0%, rgba(11, 8, 12, 0.98) 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--backgroundColor) 95%, transparent) 0%,
+    color-mix(in srgb, var(--backgroundColor) 98%, transparent) 100%
+  );
   background-color: var(--backgroundColor);
   overflow: hidden;
   display: flex;
@@ -154,10 +178,67 @@ body {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(194, 164, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(194, 164, 255, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(var(--accent-rgb), 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(var(--accent-rgb), 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
+}
+
+.palettes {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 40;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.palettes button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.palettes button i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.palettes button:hover,
+.palettes button[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+@media (max-width: 760px) {
+  .palettes {
+    bottom: 14px;
+  }
+
+  .palettes button span {
+    display: none;
+  }
+
+  .palettes button {
+    padding: 8px 10px;
+  }
 }
 
 .techstack>* {
@@ -176,6 +257,7 @@ body {
   text-transform: uppercase;
   z-index: 3;
   margin: 0;
+  color: var(--ink);
 }
 
 @media screen and (min-width: 768px) {

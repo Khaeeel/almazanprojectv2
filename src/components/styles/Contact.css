@@ -16,6 +16,7 @@
   text-transform: uppercase;
   margin: 0;
   margin-bottom: 30px;
+  color: var(--ink);
 }
 .contact-flex {
   display: flex;
@@ -26,6 +27,7 @@
   margin: 0;
   opacity: 0.6;
   font-size: 14px;
+  color: var(--muted);
 }
 .contact-box {
   display: flex;
@@ -35,10 +37,11 @@
   margin-top: 8px;
   margin-bottom: 15px;
   font-size: 14px;
+  color: var(--ink);
 }
 a.contact-social {
   font-size: 16px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--line);
   margin-bottom: 8px;
 }
 .contact-box h2 {

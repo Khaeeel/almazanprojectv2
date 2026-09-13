@@ -90,7 +90,7 @@
 
 .work-info p {
   font-weight: 200;
-  color: #adacac;
+  color: var(--muted);
   margin: 0;
   margin-top: 3px;
 }
@@ -264,12 +264,12 @@
 .see-all-works h3 {
   font-size: 32px;
   font-weight: 500;
-  color: #fff;
+  color: var(--ink);
 }
 
 .see-all-works p {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
   max-width: 250px;
 }
 
@@ -278,7 +278,7 @@
   padding: 15px 35px;
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: var(--backgroundColor);
   background: var(--accentColor);
   border-radius: 30px;
   text-decoration: none;
@@ -287,8 +287,9 @@
 }
 
 .see-all-btn:hover {
+  color: var(--backgroundColor);
   transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(194, 164, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.4);
 }
 
 /* Mobile: Stack work items vertically when GSAP pinning is disabled */

@@ -1,8 +1,10 @@
 .myworks-page {
   min-height: 100vh;
   background-color: var(--backgroundColor);
+  color: var(--ink);
   padding: 80px 40px;
   box-sizing: border-box;
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
 .myworks-header {
@@ -24,14 +26,14 @@
 
 .back-button:hover {
   background: var(--accentColor);
-  color: #000;
+  color: var(--backgroundColor);
 }
 
 .myworks-header h1 {
   font-size: 70px;
   font-weight: 500;
   margin-bottom: 15px;
-  color: #fff;
+  color: var(--ink);
 }
 
 .myworks-header h1 span {
@@ -40,7 +42,7 @@
 
 .myworks-header p {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
 }
 
 .myworks-grid {
@@ -52,8 +54,8 @@
 }
 
 .myworks-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid var(--line);
   border-radius: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -63,7 +65,7 @@
 .myworks-card:hover {
   transform: translateY(-10px);
   border-color: var(--accentColor);
-  box-shadow: 0 20px 40px rgba(194, 164, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(var(--accent-rgb), 0.15);
 }
 
 .myworks-card-number {
@@ -115,7 +117,8 @@
 .myworks-card-title-overlay .myworks-card-category {
   margin: 5px 0 0 0;
   font-size: 13px;
-  color: var(--accentColor);
+  /* Accent alone is too dark on photo overlays in maroon — mix with white */
+  color: color-mix(in srgb, var(--accentColor) 45%, white 55%);
 }
 
 .myworks-card:hover .myworks-card-image img {
@@ -142,7 +145,7 @@
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 8px;
-  color: #fff;
+  color: var(--ink);
 }
 
 .myworks-github-link {
@@ -152,8 +155,8 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(194, 164, 255, 0.1);
-  border: 1px solid rgba(194, 164, 255, 0.3);
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
   color: var(--accentColor);
   transition: all 0.3s ease;
   font-size: 18px;
@@ -161,9 +164,10 @@
 }
 
 .myworks-github-link:hover {
-  background: rgba(194, 164, 255, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   border-color: var(--accentColor);
   transform: scale(1.1);
+  color: var(--accentColor);
 }
 
 .myworks-card-category {
@@ -174,18 +178,18 @@
 
 .myworks-card-description {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--ink);
+  opacity: 0.85;
   line-height: 1.6;
   margin-bottom: 15px;
 }
 
 .myworks-card-tech {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--muted);
   line-height: 1.5;
 }
 
-/* Responsive */
 @media only screen and (max-width: 768px) {
   .myworks-page {
     padding: 60px 20px;
