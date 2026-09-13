@@ -18,20 +18,20 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  /* Default: Maroon & cream (from vibe-coded robot design) */
-  --accentColor: #7a1e2e;
-  --accent-deep: #b8464f;
-  --backgroundColor: #f4ecdf;
-  --ink: #3a1218;
-  --muted: #8a6a6e;
-  --line: rgba(58, 18, 24, 0.35);
-  --glow: #d0505c;
-  --glow-hot: #e0473c;
-  --glow-inset: rgba(122, 30, 46, 0.55);
-  --accent-rgb: 122, 30, 46;
-  --orb: #7a1e2e;
-  --orb-glow: 150, 40, 60;
-  --orb-glow2: 200, 90, 80;
+  /* Default: Ember (from vibe-coded robot design) */
+  --accentColor: #f0a13c;
+  --accent-deep: #8a4a12;
+  --backgroundColor: #0a0705;
+  --ink: #fbf3e6;
+  --muted: #a89479;
+  --line: rgba(255, 255, 255, 0.35);
+  --glow: #ffd9a3;
+  --glow-hot: #ff9a2e;
+  --glow-inset: rgba(138, 74, 18, 0.6);
+  --accent-rgb: 240, 161, 60;
+  --orb: #ffd9a3;
+  --orb-glow: 255, 170, 70;
+  --orb-glow2: 200, 90, 20;
   --vh: 100vh;
   --vh: 100svh;
 }

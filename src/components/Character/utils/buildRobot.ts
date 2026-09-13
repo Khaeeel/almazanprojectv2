@@ -36,10 +36,15 @@ const ROBOT_COLORS: Record<
     lensBase: number;
     iris: number;
     ring: number;
+    ring2: number;
     screen: number;
     screenBase: number;
     eyeGlow: [string, string];
     halo: [string, string];
+    /** HUD dial strength — light themes need more opacity to read */
+    hudOpacity: number;
+    hudHaloOpacity: number;
+    lightBg: boolean;
     exposure: number;
   }
 > = {
@@ -53,10 +58,14 @@ const ROBOT_COLORS: Record<
     lensBase: 0x1a0a33,
     iris: 0xe9dcff,
     ring: 0x9d6bff,
+    ring2: 0x7a4de0,
     screen: 0xd25a9a,
     screenBase: 0x2a0a2a,
     eyeGlow: ["rgba(190,150,255,0.7)", "rgba(140,80,255,0.2)"],
     halo: ["rgba(110,50,210,0.45)", "rgba(70,25,150,0.15)"],
+    hudOpacity: 1,
+    hudHaloOpacity: 1,
+    lightBg: false,
     exposure: 1.1,
   },
   maroon: {
@@ -69,10 +78,14 @@ const ROBOT_COLORS: Record<
     lensBase: 0x2a0a0d,
     iris: 0xfff1e0,
     ring: 0x8a2a38,
+    ring2: 0xb8464f,
     screen: 0xd8535a,
     screenBase: 0x2a0a0d,
     eyeGlow: ["rgba(255,140,120,0.7)", "rgba(200,50,60,0.2)"],
-    halo: ["rgba(180,60,70,0.28)", "rgba(150,40,60,0.1)"],
+    halo: ["rgba(180,60,70,0.55)", "rgba(150,40,60,0.22)"],
+    hudOpacity: 1.45,
+    hudHaloOpacity: 0.85,
+    lightBg: true,
     exposure: 1.25,
   },
   ice: {
@@ -85,10 +98,14 @@ const ROBOT_COLORS: Record<
     lensBase: 0x061a26,
     iris: 0xe0fbff,
     ring: 0x4fd6ff,
+    ring2: 0x1e8fb8,
     screen: 0x3cc9f2,
     screenBase: 0x06202c,
     eyeGlow: ["rgba(160,235,255,0.7)", "rgba(40,190,255,0.2)"],
     halo: ["rgba(40,160,230,0.4)", "rgba(10,90,140,0.15)"],
+    hudOpacity: 1,
+    hudHaloOpacity: 1,
+    lightBg: false,
     exposure: 1.1,
   },
   ember: {
@@ -101,10 +118,14 @@ const ROBOT_COLORS: Record<
     lensBase: 0x2a1206,
     iris: 0xfff0d6,
     ring: 0xf0a13c,
+    ring2: 0xb86a1c,
     screen: 0xf0a13c,
     screenBase: 0x2a1206,
     eyeGlow: ["rgba(255,210,140,0.7)", "rgba(255,140,40,0.2)"],
     halo: ["rgba(220,130,40,0.4)", "rgba(150,70,10,0.15)"],
+    hudOpacity: 1,
+    hudHaloOpacity: 1,
+    lightBg: false,
     exposure: 1.1,
   },
 };
@@ -160,19 +181,22 @@ function joint(
 export function buildRobot(): RobotInstance {
   const graphite = new THREE.MeshStandardMaterial({
     color: 0x1c1b24,
-    metalness: 0.9,
-    roughness: 0.35,
+    metalness: 0.75,
+    roughness: 0.42,
     flatShading: true,
+    envMapIntensity: 0.35,
   });
   const smooth = new THREE.MeshStandardMaterial({
     color: 0x24222e,
-    metalness: 0.85,
-    roughness: 0.3,
+    metalness: 0.7,
+    roughness: 0.38,
+    envMapIntensity: 0.35,
   });
   const chrome = new THREE.MeshStandardMaterial({
     color: 0xc4bfd6,
-    metalness: 1.0,
-    roughness: 0.2,
+    metalness: 0.95,
+    roughness: 0.28,
+    envMapIntensity: 0.4,
   });
   const seam = new THREE.MeshStandardMaterial({
     color: 0x120c22,
@@ -325,6 +349,93 @@ export function buildRobot(): RobotInstance {
     eyes.push({ eye, mov: [iris, pupil], glow, base: eye.rotation.y });
     head.add(eye);
   });
+
+  // HUD dial — from vibe script (rings + ticks + halo), thickened for this camera FOV
+  const ring2Mat = new THREE.MeshBasicMaterial({
+    color: 0xb86a1c,
+    transparent: true,
+    opacity: 0.22,
+    depthWrite: false,
+  });
+  ringMat.depthWrite = false;
+
+  const hud = new THREE.Group();
+  hud.name = "hudRings";
+  // Local space (character is scaled ~1.55) — frame the bust like the concept
+  hud.position.set(0, 0.2, -1.25);
+  hud.scale.setScalar(1.2);
+
+  const hudR1 = new THREE.Mesh(
+    new THREE.TorusGeometry(1.7, 0.018, 8, 192),
+    ringMat
+  );
+  const hudR2 = new THREE.Mesh(
+    new THREE.TorusGeometry(2.05, 0.022, 8, 192),
+    ring2Mat
+  );
+  hudR2.rotation.x = 0.3;
+
+  // Third faint guide ring (reads as the multi-ring dial in the concept)
+  const ring3Mat = new THREE.MeshBasicMaterial({
+    color: 0xb86a1c,
+    transparent: true,
+    opacity: 0.12,
+    depthWrite: false,
+  });
+  const hudR3 = new THREE.Mesh(
+    new THREE.TorusGeometry(1.35, 0.012, 8, 160),
+    ring3Mat
+  );
+  hudR3.rotation.x = -0.18;
+
+  const hudTicks = new THREE.Group();
+  for (let i = 0; i < 48; i++) {
+    const major = i % 6 === 0;
+    const tick = new THREE.Mesh(
+      new THREE.BoxGeometry(
+        major ? 0.028 : 0.014,
+        major ? 0.2 : 0.09,
+        0.014
+      ),
+      ringMat
+    );
+    const a = (i / 48) * Math.PI * 2;
+    tick.position.set(Math.cos(a) * 1.85, Math.sin(a) * 1.85, 0);
+    tick.rotation.z = a + Math.PI / 2;
+    hudTicks.add(tick);
+  }
+
+  // Inner hash marks (smaller ring of ticks) — matches denser concept dial
+  for (let i = 0; i < 24; i++) {
+    const tick = new THREE.Mesh(
+      new THREE.BoxGeometry(0.01, 0.05, 0.01),
+      ring3Mat
+    );
+    const a = (i / 24) * Math.PI * 2;
+    tick.position.set(Math.cos(a) * 1.35, Math.sin(a) * 1.35, 0);
+    tick.rotation.z = a + Math.PI / 2;
+    hudTicks.add(tick);
+  }
+
+  hud.add(hudR1, hudR2, hudR3, hudTicks);
+  character.add(hud);
+
+  const headHaloTex = glowTexture(
+    "rgba(220,130,40,0.4)",
+    "rgba(150,70,10,0.15)"
+  );
+  const hudHalo = new THREE.Sprite(
+    new THREE.SpriteMaterial({
+      map: headHaloTex,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      opacity: 0.5,
+    })
+  );
+  hudHalo.scale.set(6.5, 6.5, 1);
+  hudHalo.position.set(0, 0.15, -1.85);
+  character.add(hudHalo);
 
   // Neck + torso
   limb([0, -0.9, 0], [0, -1.5, 0], 0.28, chrome, character);
@@ -491,6 +602,8 @@ export function buildRobot(): RobotInstance {
   };
 
   const eyeSprites = eyes.map((e) => e.glow);
+  let hudStrength = 1;
+  let hudHaloStrength = 1;
 
   const applyPalette = (name: PaletteName) => {
     const C = ROBOT_COLORS[name];
@@ -504,6 +617,11 @@ export function buildRobot(): RobotInstance {
     lensMat.color.setHex(C.lensBase);
     irisMat.emissive.setHex(C.iris);
     ringMat.color.setHex(C.ring);
+    ringMat.needsUpdate = true;
+    ring2Mat.color.setHex(C.ring2);
+    ring2Mat.needsUpdate = true;
+    ring3Mat.color.setHex(C.ring);
+    ring3Mat.needsUpdate = true;
     screenMat.emissive.setHex(C.screen);
     screenMat.color.setHex(C.screenBase);
     tabletMat.emissive.setHex(C.screen);
@@ -519,8 +637,23 @@ export function buildRobot(): RobotInstance {
       sp.material.map = eyeGlowTex;
       sp.material.needsUpdate = true;
     });
-    floorGlow.material.map = glowTexture(...C.halo);
+    const prevFloor = floorGlow.material.map;
+    const prevHalo = hudHalo.material.map;
+    const haloMap = glowTexture(...C.halo);
+    floorGlow.material.map = haloMap;
     floorGlow.material.needsUpdate = true;
+    hudHalo.material.map = haloMap;
+    // Additive pops on dark themes; normal blend reads on cream
+    hudHalo.material.blending = C.lightBg
+      ? THREE.NormalBlending
+      : THREE.AdditiveBlending;
+    hudHalo.material.needsUpdate = true;
+    if (prevFloor && prevFloor !== haloMap) prevFloor.dispose();
+    if (prevHalo && prevHalo !== prevFloor && prevHalo !== haloMap) {
+      prevHalo.dispose();
+    }
+    hudStrength = C.hudOpacity;
+    hudHaloStrength = C.hudHaloOpacity;
   };
 
   applyPalette(resolveInitialPalette());
@@ -539,6 +672,21 @@ export function buildRobot(): RobotInstance {
     lensMat.emissiveIntensity = 1.5 + Math.sin(now * 0.0025) * 0.3;
     seam.emissiveIntensity = 1.5 + Math.sin(now * 0.0011) * 0.2;
     head.position.y = Math.sin(now * 0.0011) * 0.02;
+
+    // HUD dial spin; fade out after leaving the hero
+    const hero = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.85));
+    hud.rotation.z = now * 0.00012;
+    hudR2.rotation.z = -now * 0.00019;
+    hudR3.rotation.z = now * 0.00008;
+    hud.visible = hero > 0.02;
+    hudHalo.visible = hero > 0.02;
+    ringMat.opacity = Math.min(1, 0.38 * hudStrength * hero);
+    ring2Mat.opacity = Math.min(1, 0.26 * hudStrength * hero);
+    ring3Mat.opacity = Math.min(1, 0.16 * hudStrength * hero);
+    hudHalo.material.opacity = Math.min(
+      1,
+      (0.4 + 0.55 * hero) * hero * hudHaloStrength
+    );
 
     if (now > nextBlink) {
       blinkT = now;

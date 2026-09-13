@@ -6,41 +6,22 @@ import {
   type PaletteName,
 } from "../palettes";
 
-const DOME_COLORS: Record<PaletteName, { ring: number; halo: [string, string] }> = {
+const DOME_COLORS: Record<PaletteName, { ring: number }> = {
   violet: {
     ring: 0x9d6bff,
-    halo: ["rgba(110,50,210,0.45)", "rgba(70,25,150,0.15)"],
   },
   maroon: {
     ring: 0x8a2a38,
-    halo: ["rgba(180,60,70,0.28)", "rgba(150,40,60,0.1)"],
   },
   ice: {
     ring: 0x4fd6ff,
-    halo: ["rgba(40,160,230,0.4)", "rgba(10,90,140,0.15)"],
   },
   ember: {
     ring: 0xf0a13c,
-    halo: ["rgba(220,130,40,0.4)", "rgba(150,70,10,0.15)"],
   },
 };
 
-function glowTexture(inner: string, outer: string) {
-  const c = document.createElement("canvas");
-  c.width = c.height = 256;
-  const g = c.getContext("2d")!;
-  const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
-  grd.addColorStop(0, inner);
-  grd.addColorStop(0.4, outer);
-  grd.addColorStop(1, "rgba(0,0,0,0)");
-  g.fillStyle = grd;
-  g.fillRect(0, 0, 256, 256);
-  const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace;
-  return t;
-}
-
-/** Wireframe dome + rings + nebula from the vibe-coded tech-stack shot */
+/** Wireframe dome + rings from the vibe-coded tech-stack shot */
 const TechStackGlobe = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -99,33 +80,6 @@ const TechStackGlobe = () => {
       domeRings.push(rr);
     }
 
-    let headGlowTex = glowTexture(...initColors.halo);
-    const nebula = new THREE.Sprite(
-      new THREE.SpriteMaterial({
-        map: headGlowTex,
-        transparent: true,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-        opacity: 0.9,
-      })
-    );
-    nebula.scale.set(26, 16, 1);
-    nebula.position.set(0, -1.5, -6);
-    scene.add(nebula);
-
-    const nebula2 = new THREE.Sprite(
-      new THREE.SpriteMaterial({
-        map: headGlowTex,
-        transparent: true,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-        opacity: 0.7,
-      })
-    );
-    nebula2.scale.set(12, 8, 1);
-    nebula2.position.set(0, -0.5, -5);
-    scene.add(nebula2);
-
     const pGeo = new THREE.BufferGeometry();
     const N = 180;
     const pos = new Float32Array(N * 3);
@@ -151,11 +105,6 @@ const TechStackGlobe = () => {
       if (!C) return;
       domeMat.color.setHex(C.ring);
       (dust.material as THREE.PointsMaterial).color.setHex(C.ring);
-      headGlowTex = glowTexture(...C.halo);
-      nebula.material.map = headGlowTex;
-      nebula.material.needsUpdate = true;
-      nebula2.material.map = headGlowTex;
-      nebula2.material.needsUpdate = true;
       // Cream bg needs a bit more wire opacity to read
       domeMat.opacity = name === "maroon" ? 0.28 : 0.16;
       renderer.toneMappingExposure = name === "maroon" ? 1.25 : 1.1;
@@ -188,7 +137,6 @@ const TechStackGlobe = () => {
         domeRings.forEach((r, i) => {
           r.rotation.z = now * 0.00004 * (i % 2 ? 1 : -1);
         });
-        nebula2.material.opacity = 0.7 + Math.sin(now * 0.0015) * 0.1;
         dust.rotation.y = now * 0.00004;
       }
       renderer.render(scene, camera);
@@ -205,9 +153,6 @@ const TechStackGlobe = () => {
       domeRings.forEach((r) => r.geometry.dispose());
       pGeo.dispose();
       (dust.material as THREE.PointsMaterial).dispose();
-      nebula.material.map?.dispose();
-      nebula.material.dispose();
-      nebula2.material.dispose();
       if (renderer.domElement.parentNode === mount) {
         mount.removeChild(renderer.domElement);
       }

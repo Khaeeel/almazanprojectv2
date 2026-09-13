@@ -51,7 +51,7 @@ const Scene = () => {
 
       const clock = new THREE.Clock();
 
-      const light = setLighting(scene);
+      const light = setLighting(scene, renderer);
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 

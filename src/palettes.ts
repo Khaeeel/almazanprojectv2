@@ -7,8 +7,13 @@ export type PaletteDef = {
   swatchRing?: string;
   css: Record<string, string>;
   lights: {
-    directional: number;
-    point: number;
+    ambient: number;
+    key: number;
+    rim: number;
+    fill: number;
+    under: number;
+    /** Keep HDR reflections subtle so env map purple doesn't leak */
+    envIntensity: number;
   };
 };
 
@@ -32,7 +37,14 @@ export const PALETTES: Record<PaletteName, PaletteDef> = {
       "--orb-glow": "190,120,255",
       "--orb-glow2": "120,60,220",
     },
-    lights: { directional: 0xa56cf5, point: 0xa56cf5 },
+    lights: {
+      ambient: 0x2a2438,
+      key: 0xa56cf5,
+      rim: 0xd8c8ff,
+      fill: 0xf0e8ff,
+      under: 0x5b2bb8,
+      envIntensity: 0.48,
+    },
   },
   maroon: {
     label: "Maroon & cream",
@@ -53,7 +65,14 @@ export const PALETTES: Record<PaletteName, PaletteDef> = {
       "--orb-glow": "150,40,60",
       "--orb-glow2": "200,90,80",
     },
-    lights: { directional: 0xd0505c, point: 0xd0505c },
+    lights: {
+      ambient: 0x6b5a55,
+      key: 0xd0505c,
+      rim: 0xfff1dc,
+      fill: 0xfff8f0,
+      under: 0x7a1e2e,
+      envIntensity: 0.4,
+    },
   },
   ice: {
     label: "Ice",
@@ -73,7 +92,14 @@ export const PALETTES: Record<PaletteName, PaletteDef> = {
       "--orb-glow": "80,200,255",
       "--orb-glow2": "20,110,160",
     },
-    lights: { directional: 0x3cc9f2, point: 0x3cc9f2 },
+    lights: {
+      ambient: 0x1e2c38,
+      key: 0x3cc9f2,
+      rim: 0xd8f4ff,
+      fill: 0xe8f7ff,
+      under: 0x0e5a7a,
+      envIntensity: 0.45,
+    },
   },
   ember: {
     label: "Ember",
@@ -93,11 +119,18 @@ export const PALETTES: Record<PaletteName, PaletteDef> = {
       "--orb-glow": "255,170,70",
       "--orb-glow2": "200,90,20",
     },
-    lights: { directional: 0xf0a13c, point: 0xf0a13c },
+    lights: {
+      ambient: 0x3a2a1c,
+      key: 0xf0a13c,
+      rim: 0xffe9c8,
+      fill: 0xfff0dc,
+      under: 0x8a4a12,
+      envIntensity: 0.42,
+    },
   },
 };
 
-export const DEFAULT_PALETTE: PaletteName = "maroon";
+export const DEFAULT_PALETTE: PaletteName = "ember";
 
 export const PALETTE_ORDER: PaletteName[] = [
   "violet",
@@ -129,6 +162,14 @@ export function resolveInitialPalette(): PaletteName {
   try {
     const fromUrl = new URLSearchParams(location.search).get("palette");
     if (fromUrl && fromUrl in PALETTES) return fromUrl as PaletteName;
+
+    // One-time migrate when site default changed to ember
+    const defaultVersion = "ember-v1";
+    if (localStorage.getItem("paletteDefaultVersion") !== defaultVersion) {
+      localStorage.setItem("paletteDefaultVersion", defaultVersion);
+      localStorage.removeItem("palette");
+    }
+
     const saved = localStorage.getItem("palette");
     if (saved && saved in PALETTES) return saved as PaletteName;
   } catch {

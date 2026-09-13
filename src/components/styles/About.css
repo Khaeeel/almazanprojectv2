@@ -15,6 +15,20 @@
   width: 100%;
   max-width: calc(100% - 15px);
 }
+
+/* Glowing orb from the vibe-coded concept */
+.orb {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--orb);
+  box-shadow:
+    0 0 40px 12px rgba(var(--orb-glow), 0.55),
+    0 0 90px 30px rgba(var(--orb-glow2), 0.35);
+  margin: 0 0 40px 120px;
+  flex-shrink: 0;
+}
+
 .about-me h3 {
   font-size: 18px;
   text-transform: uppercase;
@@ -49,6 +63,9 @@
   }
   .about-me {
     width: 500px;
+  }
+  .orb {
+    margin: 0 0 48px 150px;
   }
   .about-me h3 {
     font-size: 22px;
@@ -93,6 +110,13 @@
   .about-me p {
     font-size: 1.7vw;
     line-height: 2.1vw;
+  }
+}
+@media only screen and (max-width: 760px) {
+  .orb {
+    margin: 0 0 28px 0;
+    width: 40px;
+    height: 40px;
   }
 }
 @media only screen and (min-width: 1950px) {
