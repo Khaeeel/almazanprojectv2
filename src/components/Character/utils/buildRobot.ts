@@ -350,92 +350,7 @@ export function buildRobot(): RobotInstance {
     head.add(eye);
   });
 
-  // HUD dial — from vibe script (rings + ticks + halo), thickened for this camera FOV
-  const ring2Mat = new THREE.MeshBasicMaterial({
-    color: 0xb86a1c,
-    transparent: true,
-    opacity: 0.22,
-    depthWrite: false,
-  });
-  ringMat.depthWrite = false;
-
-  const hud = new THREE.Group();
-  hud.name = "hudRings";
-  // Local space (character is scaled ~1.55) — frame the bust like the concept
-  hud.position.set(0, 0.2, -1.25);
-  hud.scale.setScalar(1.2);
-
-  const hudR1 = new THREE.Mesh(
-    new THREE.TorusGeometry(1.7, 0.018, 8, 192),
-    ringMat
-  );
-  const hudR2 = new THREE.Mesh(
-    new THREE.TorusGeometry(2.05, 0.022, 8, 192),
-    ring2Mat
-  );
-  hudR2.rotation.x = 0.3;
-
-  // Third faint guide ring (reads as the multi-ring dial in the concept)
-  const ring3Mat = new THREE.MeshBasicMaterial({
-    color: 0xb86a1c,
-    transparent: true,
-    opacity: 0.12,
-    depthWrite: false,
-  });
-  const hudR3 = new THREE.Mesh(
-    new THREE.TorusGeometry(1.35, 0.012, 8, 160),
-    ring3Mat
-  );
-  hudR3.rotation.x = -0.18;
-
-  const hudTicks = new THREE.Group();
-  for (let i = 0; i < 48; i++) {
-    const major = i % 6 === 0;
-    const tick = new THREE.Mesh(
-      new THREE.BoxGeometry(
-        major ? 0.028 : 0.014,
-        major ? 0.2 : 0.09,
-        0.014
-      ),
-      ringMat
-    );
-    const a = (i / 48) * Math.PI * 2;
-    tick.position.set(Math.cos(a) * 1.85, Math.sin(a) * 1.85, 0);
-    tick.rotation.z = a + Math.PI / 2;
-    hudTicks.add(tick);
-  }
-
-  // Inner hash marks (smaller ring of ticks) — matches denser concept dial
-  for (let i = 0; i < 24; i++) {
-    const tick = new THREE.Mesh(
-      new THREE.BoxGeometry(0.01, 0.05, 0.01),
-      ring3Mat
-    );
-    const a = (i / 24) * Math.PI * 2;
-    tick.position.set(Math.cos(a) * 1.35, Math.sin(a) * 1.35, 0);
-    tick.rotation.z = a + Math.PI / 2;
-    hudTicks.add(tick);
-  }
-
-  hud.add(hudR1, hudR2, hudR3, hudTicks);
-  character.add(hud);
-
-  const headHaloTex = glowTexture(
-    "rgba(220,130,40,0.4)",
-    "rgba(150,70,10,0.15)"
-  );
-  const hudHalo = new THREE.Sprite(
-    new THREE.SpriteMaterial({
-      map: headHaloTex,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      opacity: 0.5,
-    })
-  );
-  hudHalo.scale.set(6.5, 6.5, 1);
-  hudHalo.position.set(0, 0.15, -1.85);
-  character.add(hudHalo);
+  // HUD dial removed — was showing as a circle behind the robot on About / scroll frames
 
   // Neck + torso
   limb([0, -0.9, 0], [0, -1.5, 0], 0.28, chrome, character);
@@ -489,16 +404,21 @@ export function buildRobot(): RobotInstance {
     character.add(foot);
   });
 
-  // Chair
+  // Chair — only with desk shot (hidden on About bust so it doesn't peek in)
+  const chairProps = new THREE.Group();
+  chairProps.name = "chairProps";
+  chairProps.visible = false;
+  character.add(chairProps);
+
   const seat = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.12, 1.4), deskMat);
   seat.position.set(0, -4.1, 0.35);
-  character.add(seat);
+  chairProps.add(seat);
   const back = new THREE.Mesh(new THREE.BoxGeometry(1.7, 1.9, 0.12), deskMat);
   back.position.set(0, -3.2, -0.4);
-  character.add(back);
+  chairProps.add(back);
   [-0.7, 0.7].forEach((x) => {
-    limb([x, -4.15, -0.2], [x * 1.15, -6.0, -0.75], 0.04, deskMat, character);
-    limb([x, -4.15, 0.9], [x * 1.15, -6.0, 1.2], 0.04, deskMat, character);
+    limb([x, -4.15, -0.2], [x * 1.15, -6.0, -0.75], 0.04, deskMat, chairProps);
+    limb([x, -4.15, 0.9], [x * 1.15, -6.0, 1.2], 0.04, deskMat, chairProps);
   });
 
   // Desk + laptop — hidden on hero; revealed in GsapScroll desk shot
@@ -602,8 +522,6 @@ export function buildRobot(): RobotInstance {
   };
 
   const eyeSprites = eyes.map((e) => e.glow);
-  let hudStrength = 1;
-  let hudHaloStrength = 1;
 
   const applyPalette = (name: PaletteName) => {
     const C = ROBOT_COLORS[name];
@@ -618,10 +536,6 @@ export function buildRobot(): RobotInstance {
     irisMat.emissive.setHex(C.iris);
     ringMat.color.setHex(C.ring);
     ringMat.needsUpdate = true;
-    ring2Mat.color.setHex(C.ring2);
-    ring2Mat.needsUpdate = true;
-    ring3Mat.color.setHex(C.ring);
-    ring3Mat.needsUpdate = true;
     screenMat.emissive.setHex(C.screen);
     screenMat.color.setHex(C.screenBase);
     tabletMat.emissive.setHex(C.screen);
@@ -638,22 +552,10 @@ export function buildRobot(): RobotInstance {
       sp.material.needsUpdate = true;
     });
     const prevFloor = floorGlow.material.map;
-    const prevHalo = hudHalo.material.map;
     const haloMap = glowTexture(...C.halo);
     floorGlow.material.map = haloMap;
     floorGlow.material.needsUpdate = true;
-    hudHalo.material.map = haloMap;
-    // Additive pops on dark themes; normal blend reads on cream
-    hudHalo.material.blending = C.lightBg
-      ? THREE.NormalBlending
-      : THREE.AdditiveBlending;
-    hudHalo.material.needsUpdate = true;
     if (prevFloor && prevFloor !== haloMap) prevFloor.dispose();
-    if (prevHalo && prevHalo !== prevFloor && prevHalo !== haloMap) {
-      prevHalo.dispose();
-    }
-    hudStrength = C.hudOpacity;
-    hudHaloStrength = C.hudHaloOpacity;
   };
 
   applyPalette(resolveInitialPalette());
@@ -671,23 +573,10 @@ export function buildRobot(): RobotInstance {
     // Subtle idle glow / blink — does not touch GSAP scroll timelines
     lensMat.emissiveIntensity = 1.5 + Math.sin(now * 0.0025) * 0.3;
     seam.emissiveIntensity = 1.5 + Math.sin(now * 0.0011) * 0.2;
-    head.position.y = Math.sin(now * 0.0011) * 0.02;
-
-    // HUD dial is hero-only — hide fully by the about/desk shot (What I Do)
-    const scrollP = window.scrollY / Math.max(1, window.innerHeight);
-    const hero = Math.max(0, 1 - scrollP / 0.55);
-    const showHud = scrollP < 0.65;
-    hud.rotation.z = now * 0.00012;
-    hudR2.rotation.z = -now * 0.00019;
-    hudR3.rotation.z = now * 0.00008;
-    hud.visible = showHud;
-    hudHalo.visible = showHud;
-    ringMat.opacity = showHud ? Math.min(1, 0.38 * hudStrength * hero) : 0;
-    ring2Mat.opacity = showHud ? Math.min(1, 0.26 * hudStrength * hero) : 0;
-    ring3Mat.opacity = showHud ? Math.min(1, 0.16 * hudStrength * hero) : 0;
-    hudHalo.material.opacity = showHud
-      ? Math.min(1, (0.4 + 0.55 * hero) * hero * hudHaloStrength)
-      : 0;
+    // Only bob head on the hero; scrolling GSAP owns the pose
+    if (window.scrollY < 200) {
+      head.position.y = Math.sin(now * 0.0011) * 0.02;
+    }
 
     if (now > nextBlink) {
       blinkT = now;
@@ -700,8 +589,8 @@ export function buildRobot(): RobotInstance {
       eye.scale.y = 0.2 + 0.8 * blink;
     });
 
-    // Light typing when scrolled into desk shot
-    const deskShot = window.scrollY > window.innerHeight * 0.8;
+    // Light typing only once the desk shot is fully in (desk visible)
+    const deskShot = window.scrollY > window.innerHeight * 1.35;
     hands.forEach((h, i) => {
       const k = deskShot
         ? Math.max(0, Math.sin(now * 0.014 + i * Math.PI)) * 0.06

@@ -47,30 +47,61 @@
   position: relative;
   display: flex;
   gap: 0;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .what-content {
   width: 450px;
   min-height: 150px;
   max-height: 150px;
-  transition: all 0.6s ease 0.2s;
+  transition: max-height 0.6s ease 0.2s, padding 0.6s ease 0.2s, background 0.3s ease;
   position: relative;
   padding: 20px 50px;
   box-sizing: border-box;
   overflow: hidden;
-  /* Opaque panel so body copy stays readable over the robot/desk */
-  background: color-mix(in srgb, var(--backgroundColor) 92%, transparent);
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--backgroundColor) 88%, transparent);
   border-radius: 2px;
+}
+
+/* Collapsed: title + one-liner only — stops body copy bleeding into the next card */
+.what-content p,
+.what-content h5,
+.what-content .what-content-flex {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .what-noTouch:hover,
 .what-content-active {
   min-height: auto;
-  max-height: none;
+  max-height: 520px;
   padding: 40px 50px;
   z-index: 10;
   transition-delay: 0s;
   background: var(--backgroundColor);
+}
+
+.what-noTouch:hover p,
+.what-content-active p,
+.what-noTouch:hover h5,
+.what-content-active h5,
+.what-noTouch:hover .what-content-flex,
+.what-content-active .what-content-flex {
+  opacity: 1;
+  visibility: visible;
+  max-height: 500px;
+}
+
+.what-noTouch:hover p,
+.what-content-active p {
+  opacity: 0.88;
 }
 
 .what-noTouch:hover~.what-content,
@@ -80,6 +111,20 @@
   max-height: 150px;
   padding: 20px 50px;
   transition-delay: 0.2s;
+}
+
+.what-noTouch:hover~.what-content p,
+.what-noTouch:hover~.what-content h5,
+.what-noTouch:hover~.what-content .what-content-flex,
+.what-box-in:hover .what-noTouch:not(:hover) p,
+.what-box-in:hover .what-noTouch:not(:hover) h5,
+.what-box-in:hover .what-noTouch:not(:hover) .what-content-flex,
+.what-content.what-sibling p,
+.what-content.what-sibling h5,
+.what-content.what-sibling .what-content-flex {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
 }
 
 .what-content h3 {
@@ -329,7 +374,7 @@
   .what-content-active {
     padding: 20px 30px;
     min-height: auto;
-    max-height: none;
+    max-height: 520px;
     transition-delay: 0s;
   }
 
@@ -384,7 +429,7 @@
   .what-noTouch:hover,
   .what-content-active {
     min-height: auto;
-    max-height: none;
+    max-height: 520px;
     padding: 50px;
     transition-delay: 0s;
   }

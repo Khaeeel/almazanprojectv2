@@ -16,15 +16,16 @@
   max-width: calc(100% - 15px);
 }
 
-/* Glowing orb from the vibe-coded concept */
+/* Glowing orb from the vibe-coded concept — keep subtle so it doesn't eat copy */
 .orb {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--orb);
+  opacity: 0.55;
   box-shadow:
-    0 0 40px 12px rgba(var(--orb-glow), 0.55),
-    0 0 90px 30px rgba(var(--orb-glow2), 0.35);
+    0 0 28px 8px rgba(var(--orb-glow), 0.35),
+    0 0 60px 18px rgba(var(--orb-glow2), 0.2);
   margin: 0 0 40px 120px;
   flex-shrink: 0;
 }

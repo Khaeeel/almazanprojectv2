@@ -63,7 +63,7 @@ const TechStackGlobe = () => {
       opacity: 0.16,
     });
     const dome = new THREE.Mesh(
-      new THREE.SphereGeometry(7, 36, 18, 0, Math.PI * 2, 0, Math.PI * 0.55),
+      new THREE.SphereGeometry(7, 48, 28),
       domeMat
     );
     domeGroup.add(dome);

@@ -9,14 +9,21 @@ interface ParaElement extends HTMLElement {
 
 gsap.registerPlugin(ScrollTrigger);
 
+let refreshBound = false;
+let splitReady = false;
+
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
   if (window.innerWidth < 900) return;
+
+  // Avoid re-splitting on every ScrollTrigger.refresh (causes ghosted/doubled text)
+  if (splitReady) return;
+
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
   const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
   const TriggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
-  const ToggleAction = "play pause resume reverse";
+  const ToggleAction = "play none none reverse";
 
   paras.forEach((para: ParaElement) => {
     para.classList.add("visible");
@@ -75,5 +82,19 @@ export default function setSplitText() {
     );
   });
 
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
+  splitReady = true;
+
+  if (!refreshBound) {
+    refreshBound = true;
+    // Only rebuild after real layout changes (e.g. crossing the mobile breakpoint)
+    let lastWide = window.innerWidth >= 900;
+    ScrollTrigger.addEventListener("refresh", () => {
+      const wide = window.innerWidth >= 900;
+      if (wide !== lastWide) {
+        lastWide = wide;
+        splitReady = false;
+        if (wide) setSplitText();
+      }
+    });
+  }
 }

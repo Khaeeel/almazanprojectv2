@@ -10,27 +10,28 @@ export let lenis: Lenis | null = null;
 
 const Navbar = () => {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
+    // Initialize Lenis smooth scroll (this is the only smoothing layer)
     lenis = new Lenis({
-      duration: 1.7,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.7,
-      touchMultiplier: 2,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
+    // Sync ScrollTrigger to Lenis; scrub:true on timelines tracks this smoothly
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => {
+      lenis?.raf(time * 1000);
+    };
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
+
     // Start paused
     lenis.stop();
-
-    // Handle smooth scroll animation frame
-    function raf(time: number) {
-      lenis?.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 
     // Handle navigation links
     let links = document.querySelectorAll(".header ul a");
@@ -46,7 +47,7 @@ const Navbar = () => {
             if (target) {
               lenis.scrollTo(target, {
                 offset: 0,
-                duration: 1.5,
+                duration: 1.35,
               });
             }
           }
@@ -60,6 +61,8 @@ const Navbar = () => {
     });
 
     return () => {
+      gsap.ticker.remove(tick);
+      lenis?.off("scroll", ScrollTrigger.update);
       lenis?.destroy();
     };
   }, []);
